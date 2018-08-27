@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+
+.hide {
+    display: none;
+}
+#twperfectdatepicker {
+    position: absolute;
+    cursor: default;
+}
+.main-container {
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px #ddd;
+    border-radius: 4px;
+}
+.main-part .row.con {
+    border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+    font-size: 0;
+}
+.main-part .row.con .lf {
+    display: inline-block;
+    overflow: hidden;
+    padding: 10px 18px 9px 15px;
+}
+.main-part .row.con .lf.left {
+    border-right: 1px solid rgba(200, 200, 200, 0.3);
+    height: 100%;
+}
+.main-part .row.con .lf:active, .row.con.notice:active, .row.con.repeat:active{
+    background-color: #eff2fc;
+}
+.main-part .row.con .lf.right {
+    height: 100%;
+    margin-left: -1px;
+    padding-right: 75px;
+}
+.main-part .row.con .lf .cell {
+    margin-bottom: 4px;
+}
+.main-part .row.con .lf .title.cell span.word {
+    font-size: 14px;
+    color: #aaa;
+}
+.main-part .row.con .lf .showtime.cell span.word {
+    color: #6683DF;
+    font-size: 16px;
+}
+.main-part .row.con .lf .tips.cell span.word {
+    color: #757575;
+    font-size: 14px;
+}
+.row.con.notice {
+    padding: 15px 20px;
+    font-size: 0;
+}
+.row.con.notice .cell {
+    display: inline-block;
+    vertical-align: middle;
+}
+.row.con.notice .icon-cell {
+    margin-right: 20px;
+}
+.row.con.notice .iconfont {
+    font-size: 28px;
+    color: #aaa;
+}
+.row.con.notice .word-cell {
+    position: relative;
+    top: -2px;
+}
+.row.con.notice .word-cell span.word {
+    font-size: 16px;
+    color: #aaa;
+}
+
+.row.con.repeat {
+    padding: 15px 20px;
+    font-size: 0;
+}
+.row.con.repeat .cell {
+    display: inline-block;
+    vertical-align: middle;
+}
+.row.con.repeat .icon-cell {
+    margin-right: 20px;
+}
+.row.con.repeat .iconfont {
+    font-size: 28px;
+    color: #aaa;
+}
+.row.con.repeat .word-cell {
+    position: relative;
+    top: -2px;
+}
+.row.con.repeat .word-cell span.word {
+    font-size: 16px;
+    color: #aaa;
+}
+.footer {
+    padding: 20px;
+    text-align: right;
+}
+.footer a {
+    text-decoration: none;
+    color: #6683DF;
+    padding: 10px;
+}
+.footer a:active {
+    background-color: #eee;
+}
+.footer a.confirm {
+    margin-left: 10px;
+}
+/*datepicker-part*/
+.datepicker-part {
+    width: 300px;
+    height: 300px;
+}
+
+/*extra-container*/
+.extra-container {
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px #ddd;
+    border-radius: 4px;
+}
+/*timepicker-part*/
+.timepicker-part .row .time-unit {
+    display: inline-block;
+    padding: 10px 12px;
+    color: #666;
+}
+.timepicker-part .row .time-unit:active {
+    background-color: #eee;
+}

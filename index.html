@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TwPerfectDatepicker Demo</title>
+    <link href="css/twperfectdatepicker.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    body{
+        padding: 50px
+    }
+    @font-face {
+        font-family: 'iconfont';  /* project id 809764 */
+        src: url('//at.alicdn.com/t/font_809764_9k7jg4jtfqh.eot');
+        src: url('//at.alicdn.com/t/font_809764_9k7jg4jtfqh.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_809764_9k7jg4jtfqh.woff') format('woff'),
+        url('//at.alicdn.com/t/font_809764_9k7jg4jtfqh.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_809764_9k7jg4jtfqh.svg#iconfont') format('svg');
+    }
+    .iconfont{
+        font-family:"iconfont" !important;
+        font-size:16px;font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .twperfectdatepicker-btn{
+        color: #aaa; font-size: 24px; cursor: pointer;
+    }
+    .twperfectdatepicker-btn:HOVER {
+        color: #555
+    }
+</style>
+<body>
+<i class="iconfont twperfectdatepicker-btn" onselectstart="return false">&#xe659;</i>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.22.1/locale/zh-cn.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.22.1/moment.min.js"></script>
+<script src="js/twperfectdatepicker.js"></script>
+<script>
+    debugger;
+    $('.twperfectdatepicker-btn').twperfectdatepicker({
+
+    });
+</script>
+</body>
+</html>
