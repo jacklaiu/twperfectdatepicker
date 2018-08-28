@@ -19,7 +19,7 @@
 .main-part .row.con .lf {
     display: inline-block;
     overflow: hidden;
-    padding: 10px 18px 9px 15px;
+    padding: 12px 35px 8px 17px;
 }
 .main-part .row.con .lf.left {
     border-right: 1px solid rgba(200, 200, 200, 0.3);
@@ -110,12 +110,6 @@
 .footer a.confirm {
     margin-left: 10px;
 }
-/*datepicker-part*/
-.datepicker-part {
-    width: 300px;
-    height: 300px;
-}
-
 /*extra-container*/
 .extra-container {
     border: 1px solid #ddd;
@@ -130,4 +124,24 @@
 }
 .timepicker-part .row .time-unit:active {
     background-color: #eee;
+}
+/*simple-datepicker-part*/
+.simple-datepicker-part {
+    width: 300px;
+    height: 150px;
+    overflow: hidden;
+}
+/*datepicker-part*/
+.datepicker-part {
+    /* width: 300px; */
+    height: 300px;
+}
+.datepicker-part .header {
+    background-color: #eee;
+}
+.datepicker-part .header .col {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 12px;
+    color: #aaa;
 }

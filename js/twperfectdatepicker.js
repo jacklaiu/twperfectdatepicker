@@ -36,9 +36,9 @@
                                     '</div>',
                                 '</div>',
                             '</div>',
-                            '<div class="datepicker-part part hide">',
+                            /*'<div class="datepicker-part part hide">',
                                 //fill on event
-                            '</div>',
+                            '</div>',*/
                         '</div>',
                         '<div>',
                             '<div class="row notice con" style="border-bottom: 0">',
@@ -54,10 +54,83 @@
 					'</div>',
 					'<div class="extra-container">',
                         '<div class="simple-datepicker-part part hide">',
-
+                            '<div class="con year-con">',(function() {
+                                return '';
+                            }()),'</div>',
+                            '<div class="con month-con"></div>',
+                            '<div class="con date-con"></div>',
                         '</div>',
                         '<div class="timepicker-part part hide">',
                             //fill on event
+                        '</div>',
+                        '<div class="datepicker-part part hide">',
+                            //fill on event
+                            (function() {
+                                return [
+                                    '<div class="header weekday-head">',
+                                        '<div class="col" weekday="0">日</div>',
+                                        '<div class="col" weekday="1">一</div>',
+                                        '<div class="col" weekday="2">二</div>',
+                                        '<div class="col" weekday="3">三</div>',
+                                        '<div class="col" weekday="4">四</div>',
+                                        '<div class="col" weekday="5">五</div>',
+                                        '<div class="col" weekday="6">六</div>',
+                                    '</div>',
+                                    '<div class="body date-con">',
+
+                                        (function() {
+
+                                        }()),
+
+                                        /*'<div class="row">',
+                                            '<div class="date-col" weekday="0"></div>',
+                                            '<div class="date-col" weekday="1"></div>',
+                                            '<div class="date-col" weekday="2"></div>',
+                                            '<div class="date-col" weekday="3"></div>',
+                                            '<div class="date-col" weekday="4"></div>',
+                                            '<div class="date-col" weekday="5"></div>',
+                                            '<div class="date-col" weekday="6"></div>',
+                                        '</div>',
+                                        '<div class="row">',
+                                            '<div class="date-col" weekday="0"></div>',
+                                            '<div class="date-col" weekday="1"></div>',
+                                            '<div class="date-col" weekday="2"></div>',
+                                            '<div class="date-col" weekday="3"></div>',
+                                            '<div class="date-col" weekday="4"></div>',
+                                            '<div class="date-col" weekday="5"></div>',
+                                            '<div class="date-col" weekday="6"></div>',
+                                        '</div>',
+                                        '<div class="row">',
+                                            '<div class="date-col" weekday="0"></div>',
+                                            '<div class="date-col" weekday="1"></div>',
+                                            '<div class="date-col" weekday="2"></div>',
+                                            '<div class="date-col" weekday="3"></div>',
+                                            '<div class="date-col" weekday="4"></div>',
+                                            '<div class="date-col" weekday="5"></div>',
+                                            '<div class="date-col" weekday="6"></div>',
+                                        '</div>',
+                                        '<div class="row">',
+                                            '<div class="date-col" weekday="0"></div>',
+                                            '<div class="date-col" weekday="1"></div>',
+                                            '<div class="date-col" weekday="2"></div>',
+                                            '<div class="date-col" weekday="3"></div>',
+                                            '<div class="date-col" weekday="4"></div>',
+                                            '<div class="date-col" weekday="5"></div>',
+                                            '<div class="date-col" weekday="6"></div>',
+                                        '</div>',
+                                        '<div class="row">',
+                                            '<div class="date-col" weekday="0"></div>',
+                                            '<div class="date-col" weekday="1"></div>',
+                                            '<div class="date-col" weekday="2"></div>',
+                                            '<div class="date-col" weekday="3"></div>',
+                                            '<div class="date-col" weekday="4"></div>',
+                                            '<div class="date-col" weekday="5"></div>',
+                                            '<div class="date-col" weekday="6"></div>',
+                                        '</div>',*/
+                                    '</div>'
+
+                                ].join('');
+                            }()),
                         '</div>',
 				    '</div>',
 				'</div>'
@@ -68,9 +141,10 @@
 			me.settings.$main_container = $html.find('.main-container');
 			me.settings.$part_container = $html.find('.part-container');
 			me.settings.$main_part = $html.find('.main-part');
-			me.settings.$datepicker_part = $html.find('.datepicker-part');
+			// me.settings.$datepicker_part = $html.find('.datepicker-part');
 
 			me.settings.$extra_container = $html.find('.extra-container');
+			me.settings.$datepicker = $html.find('.datepicker-part');
 			me.settings.$timepicker = $html.find('.timepicker-part');
 			me.settings.$simple_datepicker = $html.find('.simple-datepicker-part');
 
@@ -88,6 +162,22 @@
 		 */
 		bindEvent: function(me) {
 			var func = this;
+
+            me.settings.$main_part.on('click', '.lf.date', function() {
+
+                Process.getDateByTimePicker(me).then(function() {
+
+                });
+
+                // me.settings.$extra_container.hide().addClass('hide');
+                // me.settings.$main_part.fadeOut('fast', 'swing', function() {
+                //     $(this).addClass('hide');
+                //     me.settings.$extra_container.fadeIn('fast', 'swing', function() {
+                //         $(this).removeClass('hide');
+                //         me.settings.$datepicker_part.removeClass('hide').show();
+                //     });
+                // });
+            });
 
 			//timepicker $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -110,21 +200,12 @@
                     me.settings.$picker.fadeOut('fast', 'swing', function() {
                         $(this).addClass('hide');
                         me.settings.$main_part.hide().addClass('hide');
-                        me.settings.$datepicker_part.empty().hide().addClass('hide');
+                        //me.settings.$datepicker_part.empty().hide().addClass('hide');
                         me.settings.$timepicker.empty().hide().addClass('hide');
                     });
 				}
 			});
-			me.settings.$main_part.on('click', '.lf.date', function() {
-                me.settings.$extra_container.hide().addClass('hide');
-                me.settings.$main_part.fadeOut('fast', 'swing', function() {
-                    $(this).addClass('hide');
-                    me.settings.$extra_container.fadeIn('fast', 'swing', function() {
-                        $(this).removeClass('hide');
-                        me.settings.$datepicker_part.removeClass('hide').show();
-                    });
-                });
-			});
+
             me.settings.$main_part.on('click', '.lf.time', function() {
 				Process.getStartHmsAndEndHms(me).then(function(ret) {
 					var starthms = ret['starthms'], endhms = ret['endhms'];
@@ -187,6 +268,17 @@
 
 	var Process = {
 
+	    getDateByTimePicker: function(me) {
+	        var func = this;
+	        return new Promise(function () {
+	            me.settings.$main_container.fadeOut('fast', 'swing', function() {
+                    $(this).addClass('hide');
+                    me.settings.$extra_container.show().fadeIn('fast', 'swing', function () {
+                        me.settings.$datepicker.removeClass('hide');
+                    });
+                });
+            });
+        },
 		getStartHmsAndEndHms: function(me) {
 			var func = this;
 			return new Promise(function(resolve, reject) {
