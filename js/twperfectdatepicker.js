@@ -58,6 +58,12 @@
                         '<div class="datepicker-part part hide">',
                             //fill on event
                         '</div>',
+                        '<div class="notice-advance-part part hide">',
+                            '<div></div>',
+                        '</div>',
+                        '<div class="repeat-part part hide">',
+                            //fill on event
+                        '</div>',
 				    '</div>',
 				'</div>'
 			].join('');
@@ -404,10 +410,38 @@
             }
         },
 
-
         refreshMe_PeriodOfTime: function(me, startdate, starttime, enddate, endtime) {},
 
-
+        showRepeat: function(me) {
+            return new Promise(function (resolve) {
+                me.settings.$repeat.removeClass('hide').fadeIn('fast', 'swing', function () {
+                    resolve();
+                });
+            });
+        },
+        hideRepeat: function(me) {
+            return new Promise(function (resolve) {
+                me.settings.$repeat.fadeOut('fast', 'swing', function () {
+                    me.settings.$repeat.addClass('hide');
+                    resolve();
+                });
+            });
+        },
+        showNoticeAdvance: function(me) {
+	        return new Promise(function (resolve) {
+	            me.settings.$notice_advance.removeClass('hide').fadeIn('fast', 'swing', function () {
+                    resolve();
+                });
+	        });
+        },
+        hideNoticeAdvance: function(me) {
+            return new Promise(function (resolve) {
+                me.settings.$notice_advance.fadeOut('fast', 'swing', function () {
+                    me.settings.$notice_advance.addClass('hide');
+                    resolve();
+                });
+            });
+        },
         showMainPart: function(me) {
             return new Promise(function(resolve) {
                 me.settings.$main_container.removeClass('hide').fadeIn('fast', 'swing', function() {
@@ -463,7 +497,9 @@
 			me.settings.$extra_container = $html.find('.extra-container');
 			me.settings.$datepicker = $html.find('.datepicker-part');
 			me.settings.$timepicker = $html.find('.timepicker-part');
-			me.settings.$simple_datepicker = $html.find('.simple-datepicker-part');
+			//me.settings.$simple_datepicker = $html.find('.simple-datepicker-part');
+			me.settings.$notice_advance = $html.find('.notice-advance-part');
+			me.settings.$repeat = $html.find('.repeat-part');
 
 			$('body').append($html);
 
@@ -485,7 +521,11 @@
 
 			me.settings.$main_container.on('click', '.row.notice', function () {
                 var $this = $(this);
-                alert('notice');
+                func.hideMainPart(me).then(function () {
+                    return func.showNoticeAdvance(me);
+                }).then(function () {
+
+                });
             });
 			//timepicker $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
