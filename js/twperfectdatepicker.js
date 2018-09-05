@@ -3,11 +3,11 @@
 	'use strict';
 
 	var template = {
-	    getMainHtml: function(starttime, endtime) {
+	    getMainHtml: function(me, starttime, endtime) {
             var showDur = 1;
             var showDurName = '小时';
 			return [
-				'<div id="twperfectdatepicker" starttime="',moment(starttime).format('YYYY-MM-DD HH:mm:00'),'" endtime="',moment(endtime).format('YYYY-MM-DD HH:mm:00'),'" class="hide" style="display: none;">',
+				'<div id="',me.settings.id,'" class="twperfectdatepicker hide" starttime="',moment(starttime).format('YYYY-MM-DD HH:mm:00'),'" endtime="',moment(endtime).format('YYYY-MM-DD HH:mm:00'),'" class="hide" style="display: none;">',
 					'<div class="main-container">',
                         '<div class="part-container">',
                             '<div class="main-part part">',
@@ -18,17 +18,17 @@
                                         return [
                                             '<div class="left start se lf',(startdate === enddate) ? ' hide':'','">',
                                                 '<div class="title cell"><span class="word">开始</span></div>',
-                                                '<div class="showtime ymd cell"><span class="word" >',moment(starttime).format('M月DD日'),'，',Util.get_weekday_name(starttime),'</span>,</div>',
+                                                '<div class="showtime ymd cell"><span class="word" >',moment(starttime).format('M月D日'),'，',Util.get_weekday_name(starttime),'</span>,</div>',
                                                 '<div class="tips cell"><span class="word">',moment(starttime).format('HH:mm'),'</span></div>',
                                             '</div>',
                                             '<div class="right end se lf',(startdate === enddate) ? ' hide':'','">',
                                                 '<div class="title cell"><span class="word">结束</span></div>',
-                                                '<div class="showtime ymd cell"><span class="word" >',moment(endtime).format('M月DD日'),'，',Util.get_weekday_name(endtime),'</span>,</div>',
+                                                '<div class="showtime ymd cell"><span class="word" >',moment(endtime).format('M月D日'),'，',Util.get_weekday_name(endtime),'</span>,</div>',
                                                 '<div class="tips cell"><span class="word">',moment(endtime).format('HH:mm'),'</span></div>',
                                             '</div>',
                                             '<div class="left date oneday lf',(startdate !== enddate) ? ' hide':'','">',
                                                 '<div class="title cell"><span class="word">日期</span></div>',
-                                                '<div class="showtime ymd cell"><span class="word" >',moment(starttime).format('M月DD日'),'，',Util.get_weekday_name(starttime),'</span>,</div>',
+                                                '<div class="showtime ymd cell"><span class="word" >',moment(starttime).format('M月D日'),'，',Util.get_weekday_name(starttime),'</span>,</div>',
                                                 '<div class="tips cell"><span class="word">今天</span></div>',
                                             '</div>',
                                             '<div class="right time oneday lf',(startdate !== enddate) ? ' hide':'','">',
@@ -48,7 +48,7 @@
                                 //fill on event
                             '</div>',*/
                         '</div>',
-                        '<div>',
+                        /*'<div>',
                             '<div class="row notice con" style="border-bottom: 0">',
                                 '<div class="cell icon-cell"><i class="iconfont">&#xe62e;</i></div>',
                                 '<div class="cell word-cell"><span class="word">设置提醒</span></div>',
@@ -57,8 +57,8 @@
                                 '<div class="cell icon-cell"><i class="iconfont">&#xe7b1;</i></div>',
                                 '<div class="cell word-cell"><span class="word">设置重复</span></div>',
                             '</div>',
-                            '<div class="footer"><a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="confirm">确定</a></div>',
-                        '</div>',
+                        '</div>',*/
+                        '<div class="footer"><a href="javascript:;" class="me_cancel">取消</a><a href="javascript:;" class="me_confirm">确定</a></div>',
 					'</div>',
 					'<div class="extra-container">',
                         '<div class="simple-datepicker-part part hide">',
@@ -84,7 +84,7 @@
                             '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">提前2天</span></div></div>',
                             '<div class="row custom"><div class="checkbox-con con"><i class="iconfont">&#xe600;</i></div><div class="word-con con"><span class="word">自定义</span></div></div>',
                         '</div>',
-                        '<div class="notice-advance-custom-part part hide">',
+                        /*'<div class="notice-advance-custom-part part hide">',
                             '<div class="header"><div class="word-con"><span class="word">自定义提醒</span></div></div>',
                             '<div class="body">',
                                 '<div class="select-con">',
@@ -96,7 +96,7 @@
                         '</div>',
                         '<div class="repeat-part part hide">',
                             //fill on event
-                        '</div>',
+                        '</div>',*/
 				    '</div>',
 				'</div>'
 			].join('');
@@ -207,6 +207,7 @@
         },
 
         getDatepicker_datesHtml: function(me, targetDate, chosenDate) {
+        	debugger;
             var startDayOfMonth = moment(targetDate).format('YYYY-MM-01');
             var endDayOfMonth = moment(targetDate).endOf('month').format('YYYY-MM-DD');
             var durMills = parseInt(moment(endDayOfMonth).format('x')) - parseInt(moment(startDayOfMonth).format('x'));
@@ -218,10 +219,11 @@
             for(var i = 1, leni = durDays; i <= leni + 1; i++) {
                 var date = month + '-' + (i < 10 ? '0' + i : i);
                 var IDayCn = lunar_calendar.solar2lunar_yyyymmdd(date).IDayCn;
-                var weekday = moment(date).weekday();
+                var weekday = parseInt(moment(date).format('d'));
                 //今日
                 var todayClass = moment().format('YYYY-MM-DD') === date ? 'today':'';
                 //被选中日
+                debugger;
                 var chosenDayClass = chosenDate && chosenDate === date ? 'chosen':'';
                 if(weekday === 0 || count === 0) {
                     htmls.push('<div class="row" onselectstart="return false">');
@@ -234,14 +236,17 @@
                         }
                     }
                     htmls.push(
-                        '<div class="date-col date '+todayClass + ' ' + chosenDayClass + '" year-month="'+moment(date).format('YYYY-MM')+'" date="'+date+'" weekday="'+weekday+'" onselectstart="return false">'+
+                        '<div class="date-col date '+todayClass + ' ' + chosenDayClass + '" year-month="'+moment(date).format('YYYY-MM')+'" date="'+date+'" weekday="'+weekday+'" title="双击可确定日期" onselectstart="return false">'+
                         '<div class="date-con"><span class="word">'+i+'</span></div><div class="lunar-con"><span class="word">'+IDayCn+'</span></div>'
                         +'</div>');
+                    if(weekday === 6) {
+                        htmls.push('</div>');
+                    }
                     ++count;
                     continue;
                 }
                 htmls.push(
-                    '<div class="date-col date '+todayClass + ' ' + chosenDayClass + '" year-month="'+moment(date).format('YYYY-MM')+'" date="'+date+'" weekday="'+weekday+'" onselectstart="return false">'+
+                    '<div class="date-col date '+todayClass + ' ' + chosenDayClass + '" year-month="'+moment(date).format('YYYY-MM')+'" date="'+date+'" weekday="'+weekday+'" title="双击可确定日期" onselectstart="return false">'+
                     '<div class="date-con"><span class="word">'+i+'</span></div><div class="lunar-con"><span class="word">'+IDayCn+'</span></div>'
                     +'</div>');
                 if(weekday === 6) {
@@ -286,32 +291,34 @@
                                     }()),
                                 '</div>',
                             '</div>',
-                            '<div class="next-pre-con" onselectstart="return false"><div class="icon-con pre pre-btn"><i class="iconfont">&#xe61b;</i></div><div class="icon-con next next-btn"><i class="iconfont">&#xe6a6;</i></div></div>',
+                            '<div class="next-pre-con" onselectstart="return false"><div class="icon-con pre pre-btn"><i class="iconfont">&#xe625;</i></div><div class="icon-con next next-btn"><i class="iconfont">&#xe7b1;</i></div></div>',
                         '</div>',
-                        '</div>',
-                        '<div class="weekday-head">',
-                            '<div class="col" weekday="0">日</div>',
-                            '<div class="col" weekday="1">一</div>',
-                            '<div class="col" weekday="2">二</div>',
-                            '<div class="col" weekday="3">三</div>',
-                            '<div class="col" weekday="4">四</div>',
-                            '<div class="col" weekday="5">五</div>',
-                            '<div class="col" weekday="6">六</div>',
-                        '</div>',
+                    '</div>',
+                    '<div class="weekday-head">',
+                        '<div class="col" weekday="0">日</div>',
+                        '<div class="col" weekday="1">一</div>',
+                        '<div class="col" weekday="2">二</div>',
+                        '<div class="col" weekday="3">三</div>',
+                        '<div class="col" weekday="4">四</div>',
+                        '<div class="col" weekday="5">五</div>',
+                        '<div class="col" weekday="6">六</div>',
+                    '</div>',
                 '</div>',
                 '<div class="body date-con">',
-                (function() {
-                    return template.getDatepicker_datesHtml(me, targetDate, chosenDate);
-                }()),
+                    (function() {
+                        var datesHtml = template.getDatepicker_datesHtml(me, targetDate, chosenDate);
+                        debugger;
+                        return datesHtml;
+                    }()),
                 '</div>',
 
-                '<div class="footer"><a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="confirm">确定</a>',(function() {
+                '<div class="footer">',(function() {
                     debugger;
                     var starthide = me.settings.choosen_period_next_action.choose_starttime_onstartdate ? '' : 'hide';
                     var endhide = me.settings.choosen_period_next_action.choose_endtime_onenddate ? '' : 'hide';
                     return '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate '+starthide+'">继续选择开始时间</a>'+
                         '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate '+endhide+'">继续选择结束时间</a>'
-                }()),'</div>',
+                }()),'<a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="confirm">确定</a></div>',
             ].join('');
         }
     };
@@ -377,7 +384,7 @@
                 $date_con.find('.month-dates-con').addClass('hide');
                 if($mdc.length === 0) {
                     var datesHtml = template.getDatepicker_datesHtml(me, targetDate, chosenDate);
-                    $date_con.append(datesHtml);
+                    $date_con.prepend(datesHtml);
                 }else {
                     $mdc.removeClass('hide');
                     if(!isNextPre) {
@@ -422,7 +429,7 @@
 
                     me.settings.$datepicker.find('.show-month-con .word-cell').append('<div class="tips-cell cell choose_enddate"><span class="word">选择结束日期</span></div>');
 
-                    me.settings.$datepicker.removeClass('hide').fadeIn('fast', 'swing');
+                    me.settings.$datepicker.removeClass('hide').fadeIn(50, 'swing');
                     me.settings.choosen_period_next_action.choose_enddate = true;
                     me.settings.choosen_period_next_action.choose_endtime_onenddate = true;
                 });
@@ -436,7 +443,7 @@
                 Process.getHms(me, startdate === enddate ? starttime : '').then(function(hms) {
                     endtime = hms;
                     me.settings.choosen_period_next_action.choose_endtime_onenddate = false;
-                    //me.settings.$datepicker.removeClass('hide').fadeIn('fast', 'swing');
+                    //me.settings.$datepicker.removeClass('hide').fadeIn(50, 'swing');
                     debugger;
                     var ret = {};
                     if(startdate) {
@@ -450,6 +457,9 @@
                     me.settings.$datepicker.find('.cancel').removeClass('hide');
                     cb ? cb(ret) : void(0);
                 });
+            });
+            me.settings.$datepicker.find('.date-col.date').off('dblclick').on('dblclick', function() {
+                me.settings.$datepicker.find('.footer .confirm').trigger('click');
             });
             me.settings.$datepicker.find('.date-col.date').off('click').on('click', function() {
                 me.settings.$datepicker.find('.mark').each(function () {
@@ -525,7 +535,7 @@
 
 	        debugger;
 
-	        var $el = $('#twperfectdatepicker');
+	        var $el = me.settings.$me;
 
 	        me.settings.$main_part.find('.lf.se').addClass('hide');
 	        me.settings.$main_part.find('.lf.oneday').removeClass('hide');
@@ -541,7 +551,11 @@
         },
 
         refreshMeByStarttimeAndEndtime: function(me, starttime, endtime) {
-            var $el = $('#twperfectdatepicker');
+        	
+        	if(!starttime) starttime = moment().startOf('hour').add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss');
+        	if(!endtime) endtime = moment().startOf('hour').add(2, 'hours').format('YYYY-MM-DD HH:mm:ss');
+        	
+            var $el = me.settings.$me;
             var startdate = moment(starttime).format('YYYY-MM-DD');
             var enddate = moment(endtime).format('YYYY-MM-DD');
             if(startdate !== enddate) {
@@ -623,16 +637,33 @@
             }*/
         },
 
+        hide: function(me) {
+	        return new Promise(function(resolve) {
+	            var $el = me.settings.$me;
+	            $el.fadeOut(50, 'swing', function() {
+                    $el.addClass('hide');
+                    resolve();
+                });
+            });
+        },
+        show: function(me) {
+            return new Promise(function(resolve) {
+                var $el = me.settings.$me;
+                $el.removeClass('hide').fadeIn(50, 'swing', function() {
+                    resolve(true);
+                });
+            });
+        },
         showRepeat: function(me) {
             return new Promise(function (resolve) {
-                me.settings.$repeat.removeClass('hide').fadeIn('fast', 'swing', function () {
+                me.settings.$repeat.removeClass('hide').fadeIn(50, 'swing', function () {
                     resolve();
                 });
             });
         },
         hideRepeat: function(me) {
             return new Promise(function (resolve) {
-                me.settings.$repeat.fadeOut('fast', 'swing', function () {
+                me.settings.$repeat.fadeOut(50, 'swing', function () {
                     me.settings.$repeat.addClass('hide');
                     resolve();
                 });
@@ -640,14 +671,14 @@
         },
         showNoticeAdvanceCustom: function(me) {
             return new Promise(function (resolve) {
-                me.settings.$notice_advance_custom.removeClass('hide').fadeIn('fast', 'swing', function () {
+                me.settings.$notice_advance_custom.removeClass('hide').fadeIn(50, 'swing', function () {
                     resolve();
                 });
             });
         },
         hideNoticeAdvanceCustom: function(me) {
             return new Promise(function (resolve) {
-                me.settings.$notice_advance_custom.fadeOut('fast', 'swing', function () {
+                me.settings.$notice_advance_custom.fadeOut(50, 'swing', function () {
                     me.settings.$notice_advance_custom.addClass('hide');
                     resolve();
                 });
@@ -655,14 +686,14 @@
         },
         showNoticeAdvance: function(me) {
 	        return new Promise(function (resolve) {
-	            me.settings.$notice_advance.removeClass('hide').fadeIn('fast', 'swing', function () {
+	            me.settings.$notice_advance.removeClass('hide').fadeIn(50, 'swing', function () {
                     resolve();
                 });
 	        });
         },
         hideNoticeAdvance: function(me) {
             return new Promise(function (resolve) {
-                me.settings.$notice_advance.fadeOut('fast', 'swing', function () {
+                me.settings.$notice_advance.fadeOut(50, 'swing', function () {
                     me.settings.$notice_advance.addClass('hide');
                     resolve();
                 });
@@ -670,14 +701,14 @@
         },
         showMainPart: function(me) {
             return new Promise(function(resolve) {
-                me.settings.$main_container.removeClass('hide').fadeIn('fast', 'swing', function() {
+                me.settings.$main_container.removeClass('hide').fadeIn(50, 'swing', function() {
                     resolve(true);
                 });
             });
         },
         hideMainPart: function(me) {
             return new Promise(function(resolve) {
-                me.settings.$main_container.fadeOut('fast', 'swing', function() {
+                me.settings.$main_container.fadeOut(50, 'swing', function() {
                     me.settings.$main_container.addClass('hide');
                     resolve(true);
                 });
@@ -685,20 +716,55 @@
         },
         showDatePicker: function(me) {
 	        return new Promise(function(resolve) {
-                me.settings.$datepicker.removeClass('hide').fadeIn('fast', 'swing', function() {
+                me.settings.$datepicker.removeClass('hide').fadeIn(50, 'swing', function() {
                     resolve(true);
                 });
             });
         },
         hideDatePicker: function(me) {
 	        return new Promise(function(resolve) {
-                me.settings.$datepicker.fadeOut('fast', 'swing', function() {
+                me.settings.$datepicker.fadeOut(50, 'swing', function() {
                     me.settings.$datepicker.addClass('hide');
                     resolve(true);
                 });
             });
         },
+        hideTimePicker: function(me) {
+            return new Promise(function(resolve) {
+                me.settings.$timepicker.fadeOut(50, 'swing', function() {
+                    me.settings.$timepicker.empty().addClass('hide');
+                    resolve(true);
+                });
+            });
+        },
+        reset: function(me) {
+	        // var $marks = me.settings.$datepicker.find('.mark');
+	        // for(var i = 0, leni = $marks.length; i < leni; i++) {
+	        //     var $m = $marks.eq(i);
+	        //     $m.removeClass('mark');
+            // }
+            me.settings.$datepicker.find('.mark').each(function () {
+                $(this).removeClass('mark');
+            });
+            me.settings.$datepicker.find('.s2e').each(function () {
+                $(this).removeClass('s2e');
+            });
+            me.settings.$datepicker.find('.date-col.chosen').removeClass('chosen');
+            me.settings.$datepicker.find('.date-col.startdate').removeClass('startdate');
+            me.settings.$datepicker.find('.date-col.enddate').removeClass('enddate');
 
+	        me.settings.$datepicker.find('.tips-cell').addClass('hide');
+            me.settings.$datepicker.find('.choose_starttime_onenddate').removeClass('hide');
+            me.settings.$datepicker.find('.choose_endtime_onenddate').addClass('hide');
+            me.settings.$datepicker.find('.confirm').removeClass('hide');
+            me.settings.$datepicker.find('.cancel').removeClass('hide');
+	        var starttime = me.$ele.attr('starttime');
+	        var endtime = me.$ele.attr('endtime');
+	        var calls = [];
+	        calls.push(func.hideTimePicker(me));
+	        calls.push(func.hideDatePicker(me));
+	        Promise.all(calls);
+        },
 
 
 
@@ -715,17 +781,15 @@
 		 * @param me
 		 */
 		init: function(me) {
-			var $el = $('#twperfectdatepicker');
-			if($el.length) return;
-			var starttime = moment().add(30, 'minutes').format('YYYY-MM-DD HH:mm:ss');
-			var endtime = moment().add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss');
+
+			var starttime = me.settings.starttime;
+			var endtime = me.settings.endtime;
 			var durMills = parseInt(moment(endtime).format('x')) - parseInt(moment(starttime).format('x'));
             var sec = durMills/1000, min = sec/60, hour = min/60, day = hour/24;
+            debugger;
+            var $html = $(template.getMainHtml(me, starttime, endtime));
 
-            var $html = $(template.getMainHtml(starttime, endtime));
-
-            me.settings.$el = $('#twperfectdatepicker');
-			me.settings.$picker = $html;
+			me.settings.$me = $html;
 
 			me.settings.$main_container = $html.find('.main-container');
 			me.settings.$part_container = $html.find('.part-container');
@@ -746,9 +810,6 @@
         refreshNoticeAdanceCustom: function(me, time, unit) {
             var $target_time = me.settings.$notice_advance_custom.find('.time-select-con');
             var $target_unit = me.settings.$notice_advance_custom.find('.unit-select-con');
-
-
-
         },
 
 		/**
@@ -757,6 +818,22 @@
 		 */
 		bindEvent: function(me) {
 			var func = this;
+
+			$(document).on('click', function (e) {
+			    var $this = $(e.target);
+			    var $e1 = $this.parents('.twperfectdatepicker');
+			    var $e2 = $this.parents('.twperfectdatepicker-con');
+			    debugger;
+			    if($e1.length !== 0 ||
+                    $this.hasClass('twperfectdatepicker-con') ||
+                    $this.hasClass('time-unit') ||
+                    $e2.length !== 0) {
+			        return;
+                }
+                func.beforeHide(me);
+                func.reset(me);
+                func.hide(me);
+            });
 			
 			me.settings.$notice_advance.on('click', '.row.custom', function () {
                 func.hideNoticeAdvance(me).then(function () {
@@ -800,22 +877,29 @@
             //     var $this = $(this);
             //     me.settings.$timepicker.empty().hide().addClass('hide');
             //     me.settings.$main_part.show().removeClass('hide');
-            //     me.settings.$picker.removeClass('hide').fadeIn('fast', 'swing');
+            //     me.settings.$me.removeClass('hide').fadeIn(50, 'swing');
             // });
 			//End timepicker $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 			//main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 			me.$ele.on('click', function(e) {
-				if(me.settings.$picker.hasClass('hide')) {
+			    var $this = $(this);
+			    debugger;
+				if(me.settings.$me.hasClass('hide')) {
 					func.beforeShow(me);
                     me.settings.$main_part.show().removeClass('hide');
-					me.settings.$picker.removeClass('hide').fadeIn('fast', 'swing');
+					me.settings.$me.removeClass('hide').fadeIn(50, 'swing', function() {
+					    func.showMainPart(me).then(function() {
+                            var starttime = $this.attr('starttime');
+                            var endtime = $this.attr('endtime');
+                            func.refreshMeByStarttimeAndEndtime(me, starttime, endtime);
+                        });
+                    });
 				}else {
                     func.beforeHide(me);
-                    me.settings.$picker.fadeOut('fast', 'swing', function() {
+                    me.settings.$me.fadeOut(50, 'swing', function() {
                         $(this).addClass('hide');
                         me.settings.$main_part.hide().addClass('hide');
-                        //me.settings.$datepicker_part.empty().hide().addClass('hide');
                         me.settings.$timepicker.empty().hide().addClass('hide');
                     });
 				}
@@ -878,32 +962,34 @@
 				Process.getStartHmsAndEndHms(me).then(function(ret) {
 				    debugger;
 					var starthms = ret['starthms'], endhms = ret['endhms'];
-					var date = $('#twperfectdatepicker').attr('date');
-					var starttime = date + " " + starthms, endtime = date + " " + endhms;
+					var date = moment(me.settings.$me.attr('starttime')).format('YYYY-MM-DD');
+					var starttime = moment(date + " " + starthms).format('YYYY-MM-DD HH:mm:ss'), endtime = moment(date + " " + endhms).format('YYYY-MM-DD HH:mm:ss');
                     var msg = Util.get_dur_msg(starttime, endtime), realDur = msg['realdur'], _showDur = msg['showdur'], showDurName = msg['showdurname'];
 					if(msg['durmills'] <= 0) {
 					    debugger;
-					    me.settings.$extra_container.hide().fadeOut('fast', 'swing', function() {
+					    me.settings.$extra_container.hide().fadeOut(50, 'swing', function() {
 					        debugger;
 					        $(this).addClass('hide');
                             me.settings.$timepicker.empty().hide().addClass('hide');
                             me.settings.$main_part.show().removeClass('hide');
                             me.settings.$main_container.show().removeClass('hide');
-                            me.settings.$picker.removeClass('hide').fadeIn('fast', 'swing');
+                            me.settings.$me.removeClass('hide').fadeIn(50, 'swing');
                         });
 					    alert('结束时间应大于开始时间');
 					    return;
                     }
-                    me.settings.$main_part.find('span.showdur').html((_showDur !== realDur ? '约':'') + _showDur + showDurName);
+                    //me.settings.$main_part.find('span.showdur').html((_showDur !== realDur ? '约':'') + _showDur + showDurName);
                     me.settings.$timepicker.empty().hide().addClass('hide');
                     me.settings.$main_part.show().removeClass('hide');
                     me.settings.$main_container.show().removeClass('hide');
-                    me.settings.$picker.removeClass('hide').fadeIn('fast', 'swing');
+                    me.settings.$me.removeClass('hide').fadeIn(50, 'swing');
 
-					var $showtime = me.settings.$main_part.find('.showtime.cell.hms'), $st = me.settings.$main_part.find('span.starthms'), $et = me.settings.$main_part.find('span.endhms');
-					$showtime.attr('starttime', starttime).attr('endtime', endtime);
-                    $st.html(starthms);
-                    $et.html(endhms);
+                    func.refreshMeByStarttimeAndEndtime(me, starttime, endtime);
+
+					//var $showtime = me.settings.$main_part.find('.showtime.cell.hms'), $st = me.settings.$main_part.find('span.starthms'), $et = me.settings.$main_part.find('span.endhms');
+					//$showtime.attr('starttime', starttime).attr('endtime', endtime);
+                    //$st.html(starthms);
+                    //$et.html(endhms);
 				});
             });
             me.settings.$main_part.on('click', '.row.notice', function() {
@@ -912,17 +998,37 @@
             me.settings.$main_part.on('click', '.row.repeat', function() {
                 alert('repeat');
             });
-            me.settings.$main_part.on('click', 'a.confirm', function() {
+            me.settings.$main_container.on('click', '.me_confirm', function() {
+                debugger;
                 func.beforeHide(me);
+                var $el = me.settings.$me;
+                var starttime = $el.attr('starttime') ? $el.attr('starttime') : moment().add(30, 'minutes').format('YYYY-MM-DD HH:mm:ss');
+                var endtime = $el.attr('endtime') ? $el.attr('endtime') : moment().add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss');
+                me.settings.onConfirm({starttime: starttime, endtime: endtime});
+                func.hide(me);
+                me.$ele.attr('starttime', starttime).attr('endtime', endtime);
+                // me.$ele.find('div.con.origin').addClass('hide');
+                // me.$ele.find('div.time .show-starttime').html(moment(starttime).format("YYYY-MM-DD HH:mm"));
+                // me.$ele.find('div.time .show-endtime').html(moment(endtime).format("YYYY-MM-DD HH:mm"));
+                // me.$ele.find('div.con.time').removeClass('hide');
             });
-            me.settings.$main_part.on('click', 'a.cancel', function() {
+            me.settings.$main_container.on('click', '.me_cancel', function() {
                 func.beforeHide(me);
+                func.reset(me);
+                func.hide(me);
+                //me.$ele.attr('starttime', '').attr('endtime', '');
+                //me.settings.onCancel();
+                // me.$ele.find('div.con.time').addClass('hide');
+                // me.$ele.find('div.con.origin').removeClass('hide');
+            });
+            $(window).resize(function() {
+                func.beforeShow(me);
             });
             //End main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 		},
 		beforeShow: function(me) {
 			var offset = me.$ele.offset();
-			me.settings.$picker.css('top', offset.top + Util.realHeight(me.$ele) + 10).css('left', 'offset'.left);
+			me.settings.$me.css('top', offset.top + Util.realHeight(me.$ele) + 10).css('left', offset.left);
 		},
 		beforeHide: function(me) {
 
@@ -936,7 +1042,7 @@
                 return func.showDatePicker(me);
             }).then(function() {
                 debugger;
-                var date = moment($('#twperfectdatepicker').attr('starttime')).format('YYYY-MM-DD');
+                var date = moment(me.settings.$me.attr('starttime')).format('YYYY-MM-DD');
                 func._refreshDatepicker(me, null, null, date, function(ret) {
                     debugger;
                     cb ? cb(ret): void(0);
@@ -948,9 +1054,9 @@
 	    getDateByTimePicker: function(me) {
 	        var process_func = this;
 	        return new Promise(function () {
-	            me.settings.$main_container.fadeOut('fast', 'swing', function() {
+	            me.settings.$main_container.fadeOut(50, 'swing', function() {
                     me.settings.$main_container.addClass('hide');
-                    me.settings.$extra_container.show().fadeIn('fast', 'swing', function () {
+                    me.settings.$extra_container.show().fadeIn(50, 'swing', function () {
                         me.settings.$datepicker.removeClass('hide');
                         func._refreshDatepicker(me, null, null, moment().format('YYYY-MM-DD'));
                     });
@@ -962,9 +1068,9 @@
             return new Promise(function(resolve, reject) {
                 debugger;
                 func.hideDatePicker(me).then(function() {
-                    me.settings.$extra_container.show().fadeIn('fast', 'swing', function () {
+                    me.settings.$extra_container.show().fadeIn(50, 'swing', function () {
                         debugger;
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starttime)).removeClass('hide').fadeIn('fast', 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starttime)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                             debugger;
                             var $this = $(this);
@@ -981,7 +1087,7 @@
                                         return;
                                     }
                                     var hms = $this.attr('hms');
-                                    me.settings.$timepicker.fadeOut('fast', 'swing', function() {
+                                    me.settings.$timepicker.fadeOut(50, 'swing', function() {
                                         debugger;
                                         me.settings.$timepicker.addClass('hide').empty();
                                         resolve(hms);
@@ -996,11 +1102,11 @@
 			var func = this;
 			return new Promise(function(resolve, reject) {
 				debugger;
-                me.settings.$main_container.fadeOut('fast', 'swing', function() {
+                me.settings.$main_container.fadeOut(50, 'swing', function() {
                     $(this).addClass('hide');
                     var starthms, endhms;
-                    me.settings.$extra_container.show().fadeIn('fast', 'swing', function () {
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours()).removeClass('hide').fadeIn('fast', 'swing');
+                    me.settings.$extra_container.show().fadeIn(50, 'swing', function () {
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours()).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function() {
                             debugger;
                             var $this = $(this);
@@ -1010,7 +1116,7 @@
                                 debugger;
                                 var $this = $(this);
                                 starthms = $this.attr('hms');
-                                me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starthms)).removeClass('hide').fadeIn('fast', 'swing');
+                                me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starthms)).removeClass('hide').fadeIn(50, 'swing');
                                 me.settings.$timepicker.find('.time-hour-unit').on('click', function() {
                                     debugger;
                                     var $this = $(this);
@@ -1108,7 +1214,7 @@
 		    var weekday_name_rel = {
                 1: '周一',2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六', 0: '周日'
             };
-            return weekday_name_rel[moment(_ymd).weekday()];
+            return weekday_name_rel[parseInt(moment(_ymd).format('d'))];
         },
         'get_dur_msg': function(starttime, endtime) {
 		    debugger;
@@ -1128,20 +1234,54 @@
                 choose_starttime_onstartdate: false,//需要打开timepicker，选择开始日的开始时间
                 choose_enddate: false,//需要打开datepicker，选择结束日
                 choose_endtime_onenddate: false//需要打开timepicker，选择结束日的结束时间
-            }//用户开始时间结束时间选择，指定下一组动作
+            },//用户开始时间结束时间选择，指定下一组动作
+            onConfirm: function(ret) {
+                //...
+            },
+            onCancel: function() {
+                //...
+            },
+            starttime: moment().startOf('hour').add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss'),
+            endtime: moment().startOf('hour').add(2, 'hours').format('YYYY-MM-DD HH:mm:ss')
 		};
-		this.$ele = ele;
-		this.settings = $.extend({}, defaults, opt);
+        this.settings = $.extend({}, defaults, opt);
+        this.settings.id = 'twperfectdatepicker_' + Util.currentMills();
+
+		// var $btn = $(['<div class="twperfectdatepicker-btn-con" twperfectdatepickerid="',this.settings.id,'">',
+        //
+        //         '<div class="icon-con con"><i class="iconfont">&#xe79d;</i></div>',
+        //
+        //         '<div class="title-con con origin"><span class="word">设置时间</span></div>',
+        //
+        //         '<div class="starttime-con con time hide"><span class="word show-starttime"></span></div>',
+        //
+        //         '<div class="con gap time hide"> 到 </div>',
+        //
+        //         '<div class="endtime-con con time hide"><span class="word show-endtime"></span></div>',
+        //
+        //     '</div>'].join(''));
+        //
+		// $(ele).before($btn);
+		// $(ele).remove();
+		this.$ele = $(ele);
+
+		this.$ele.addClass('twperfectdatepicker-con');
+
 		func.init(this);
 		func.bindEvent(this);
 	};
 
     TwPerfectDatepicker.prototype = {
-
-	};
+        destory: function() {
+            this.settings.$me.remove();
+        },
+        hide: function() {
+        	func.beforeHide(me);
+            func.hide(me);
+        }
+    };
 	
 	$.fn.twperfectdatepicker = function (options) {
-		debugger;
 		return new TwPerfectDatepicker(this, options);
 	};
 	

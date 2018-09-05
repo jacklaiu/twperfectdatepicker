@@ -1,168 +1,171 @@
 @CHARSET "UTF-8";
 
-#twperfectdatepicker .hide {
+.twperfectdatepicker .hide {
     display: none!important;
 }
-#twperfectdatepicker {
+.twperfectdatepicker {
     position: absolute;
     cursor: default;
+    z-index: 99999;
+    background: #fff;
 }
-.main-container {
+.twperfectdatepicker .main-container {
     border: 1px solid #ddd;
     box-shadow: 0 2px 10px #ddd;
     border-radius: 4px;
 }
-.main-part .row.con {
+.twperfectdatepicker .main-part .row.con {
     border-bottom: 1px solid rgba(200, 200, 200, 0.3);
     font-size: 0;
 }
-.main-part .row.con .lf {
+.twperfectdatepicker .main-part .row.con .lf {
     display: inline-block;
     overflow: hidden;
     padding: 12px 35px 8px 17px;
+    vertical-align: middle;
 }
-.main-part .row.con .lf.left {
+.twperfectdatepicker .main-part .row.con .lf.left {
     border-right: 1px solid rgba(200, 200, 200, 0.3);
     height: 100%;
 }
-.main-part .row.con .lf:active, .row.con.notice:active, .row.con.repeat:active{
+.twperfectdatepicker .main-part .row.con .lf:active, .row.con.notice:active, .row.con.repeat:active{
     background-color: #eff2fc;
 }
-.main-part .row.con .lf.right {
+.twperfectdatepicker .main-part .row.con .lf.right {
     height: 100%;
     margin-left: -1px;
     padding-right: 75px;
 }
-.main-part .row.con .lf .cell {
+.twperfectdatepicker .main-part .row.con .lf .cell {
     margin-bottom: 4px;
 }
-.main-part .row.con .lf .title.cell span.word {
+.twperfectdatepicker .main-part .row.con .lf .title.cell span.word {
     font-size: 14px;
     color: #aaa;
 }
-.main-part .row.con .lf .showtime.cell span.word {
+.twperfectdatepicker .main-part .row.con .lf .showtime.cell span.word {
     color: #6683DF;
     font-size: 16px;
     font-weight: bold;
 }
-.main-part .row.con .lf .tips.cell span.word {
+.twperfectdatepicker .main-part .row.con .lf .tips.cell span.word {
     color: #757575;
     font-size: 14px;
 }
-.row.con.notice {
+.twperfectdatepicker .row.con.notice {
     padding: 15px 20px;
     font-size: 0;
 }
-.row.con.notice .cell {
+.twperfectdatepicker .row.con.notice .cell {
     display: inline-block;
     vertical-align: middle;
 }
-.row.con.notice .icon-cell {
+.twperfectdatepicker .row.con.notice .icon-cell {
     margin-right: 20px;
 }
-.row.con.notice .iconfont {
+.twperfectdatepicker .row.con.notice .iconfont {
     font-size: 28px;
     color: #aaa;
 }
-.row.con.notice .word-cell {
+.twperfectdatepicker .row.con.notice .word-cell {
     position: relative;
     top: -2px;
 }
-.row.con.notice .word-cell span.word {
+.twperfectdatepicker .row.con.notice .word-cell span.word {
     font-size: 16px;
     color: #aaa;
 }
 
-.row.con.repeat {
+.twperfectdatepicker .row.con.repeat {
     padding: 15px 20px;
     font-size: 0;
 }
-.row.con.repeat .cell {
+.twperfectdatepicker .row.con.repeat .cell {
     display: inline-block;
     vertical-align: middle;
 }
-.row.con.repeat .icon-cell {
+.twperfectdatepicker .row.con.repeat .icon-cell {
     margin-right: 20px;
 }
-.row.con.repeat .iconfont {
+.twperfectdatepicker .row.con.repeat .iconfont {
     font-size: 28px;
     color: #aaa;
 }
-.row.con.repeat .word-cell {
+.twperfectdatepicker .row.con.repeat .word-cell {
     position: relative;
     top: -2px;
 }
-.row.con.repeat .word-cell span.word {
+.twperfectdatepicker .row.con.repeat .word-cell span.word {
     font-size: 16px;
     color: #aaa;
 }
-.footer {
+.twperfectdatepicker .footer {
     padding: 20px 10px;
     text-align: right;
 }
-.footer a {
+.twperfectdatepicker .footer a {
     text-decoration: none;
     color: #6683DF;
     padding: 10px;
 }
-.footer a:active {
+.twperfectdatepicker .footer a:active {
     background-color: #eee;
 }
-.footer a.confirm {
+.twperfectdatepicker .footer a.confirm {
     margin-left: 10px;
 }
 /*extra-container*/
-.extra-container {
+.twperfectdatepicker .extra-container {
     border: 1px solid #ddd;
     box-shadow: 0 2px 10px #ddd;
     border-radius: 4px;
 }
 /*timepicker-part*/
-.timepicker-part {
+.twperfectdatepicker .timepicker-part {
     font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
-.timepicker-part .row .time-unit {
+.twperfectdatepicker .timepicker-part .row .time-unit {
     display: inline-block;
     padding: 10px 12px;
     color: #666;
     font-weight: bold;
     cursor: pointer;
 }
-.timepicker-part .row .time-unit.lt-starthms {
+.twperfectdatepicker .timepicker-part .row .time-unit.lt-starthms {
     color: #bfbfbf;
 }
 /*.timepicker-part .row .time-unit:hover {
     background-color: #fafafa;
     color: #ffffff!important;
 }*/
-.timepicker-part .row .time-unit:active {
+.twperfectdatepicker .timepicker-part .row .time-unit:active {
     background-color: #6683DF;
     color: #ffffff!important;
 }
 /*simple-datepicker-part*/
-.simple-datepicker-part {
+.twperfectdatepicker .simple-datepicker-part {
     width: 300px;
     height: 150px;
     overflow: hidden;
 }
 /*datepicker-part*/
-.datepicker-part {
+.twperfectdatepicker .datepicker-part {
     font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
-.datepicker-part .footer a {
+.twperfectdatepicker .datepicker-part .footer a {
     font-size: 12px;
 }
-.datepicker-part .header {
+.twperfectdatepicker .datepicker-part .header {
     background-color: #eee;
 }
-.datepicker-part .header .col {
+.twperfectdatepicker .datepicker-part .header .col {
     display: inline-block;
     padding: 8px 18px 8px 19px;
     font-size: 12px;
     color: #aaa;
     position: relative;
 }
-.datepicker-part .body .row .date-col {
+.twperfectdatepicker .datepicker-part .body .row .date-col {
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
@@ -175,7 +178,7 @@
     border-radius: 30px;
     font-size: 18px;
 }
-.datepicker-part .body .row .date-col .date-con {
+.twperfectdatepicker .datepicker-part .body .row .date-col .date-con {
     font-size: 14px;
     height: 17px;
     text-align: center;
@@ -184,17 +187,17 @@
     /*background-color: #8598DF;*/
     /*color: #fff;*/
 /*}*/
-.datepicker-part .body .row .date-col.date:active {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date:active {
     background: #6683DF;
 }
-.datepicker-part .body .row .date-col.date:active .lunar-con span.word,
-.datepicker-part .body .row .date-col.date:active .date-con span.word,
-.datepicker-part .body .row .date-col.date.today:active .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.today:active .date-con span.word{
+.twperfectdatepicker .datepicker-part .body .row .date-col.date:active .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date:active .date-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.today:active .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.today:active .date-con span.word{
     color: #fff;
 }
-.datepicker-part .body .row .date-col.date.today .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.today .date-con span.word {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.today .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.today .date-con span.word {
     color: #6683DF;
     font-weight: bold;
 }
@@ -205,43 +208,43 @@
 
 
 
-.datepicker-part .body .row .date-col.date.chosen {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.chosen {
     background: #6683DF;
 }
-.datepicker-part .body .row .date-col.date.chosen .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.chosen .date-con span.word {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.chosen .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.chosen .date-con span.word {
     color: #fff;
 }
 
-.datepicker-part .body .row .date-col.date.startdate {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.startdate {
     background-color: #6683DF;
 }
-.datepicker-part .body .row .date-col.date.startdate .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.startdate .date-con span.word {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.startdate .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.startdate .date-con span.word {
     color: #fff;
 }
 
-.datepicker-part .body .row .date-col.date.enddate {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.enddate {
     background-color: #6683DF;
 }
-.datepicker-part .body .row .date-col.date.enddate .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.enddate .date-con span.word {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.enddate .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.enddate .date-con span.word {
     color: #fff;
 }
 
-.datepicker-part .body .row .date-col.date.s2e {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.s2e {
     background-color: #6683DF;
 }
-.datepicker-part .body .row .date-col.date.s2e .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.s2e .date-con span.word {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.s2e .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.s2e .date-con span.word {
     color: #fff;
 }
 
-.datepicker-part .body .row .date-col.date.mark {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.mark {
     background-color: #6683DF;
 }
-.datepicker-part .body .row .date-col.date.mark .lunar-con span.word,
-.datepicker-part .body .row .date-col.date.mark .date-con span.word {
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.mark .lunar-con span.word,
+.twperfectdatepicker .datepicker-part .body .row .date-col.date.mark .date-con span.word {
     color: #fff;
 }
 
@@ -254,7 +257,7 @@
 
 
 
-.lunar-con {
+.twperfectdatepicker .lunar-con {
     font-size: 12px;
     color: #bbb;
     text-align: center;
@@ -266,55 +269,55 @@
     top: -2px;
 }
 
-.date-msg-head {
+.twperfectdatepicker .date-msg-head {
     padding: 7px 19px;
 }
 
-.month-con {
+.twperfectdatepicker .month-con {
     position: relative;
 }
-.show-month-con {
+.twperfectdatepicker .show-month-con {
     text-align: left;
 }
-.show-month-con span {
+.twperfectdatepicker .show-month-con span {
     font-size: 14px;
     color: #aaa;
 }
-.next-pre-con {
+.twperfectdatepicker .next-pre-con {
     position: absolute;
     right: -9px;
     top: 0;
 }
-.next-pre-con .icon-con {
+.twperfectdatepicker .next-pre-con .icon-con {
     display: inline-block;
     margin-left: 10px;
     padding: 3px 5px;
     border-radius: 20px;
     cursor: pointer;
 }
-.next-pre-con .icon-con i.iconfont {
+.twperfectdatepicker .next-pre-con .icon-con i.iconfont {
     color: #aaa;
     font-size: 14px;
     height: 18px;
     line-height: 18px;
     display: block;
 }
-.next-pre-con .icon-con i.iconfont:hover {
+.twperfectdatepicker .next-pre-con .icon-con i.iconfont:hover {
     color: #6683DF;
 }
-.next-pre-con .icon-con:HOVER {
+.twperfectdatepicker .next-pre-con .icon-con:HOVER {
     background: #6683DF;
 }
-.next-pre-con .icon-con:HOVER i.iconfont {
+.twperfectdatepicker .next-pre-con .icon-con:HOVER i.iconfont {
     color: #fff;
 }
-.show-month-con .cell {
+.twperfectdatepicker .show-month-con .cell {
     display: inline-block;
 }
-.show-month-con .select-el {
+.twperfectdatepicker .show-month-con .select-el {
     cursor: pointer;
 }
-.show-month-con .select-el:hover span {
+.twperfectdatepicker .show-month-con .select-el:hover span {
     color: #6683DF;
     font-weight: normal;
 }
@@ -323,64 +326,64 @@
 
 
 /*notice-advance*/
-.notice-advance-part {
+.twperfectdatepicker .notice-advance-part {
     width: 300px;
     box-shadow: 0 0 10px #aaaaaa;
     padding: 10px 0;
 }
-.notice-advance-part .row .con {
+.twperfectdatepicker .notice-advance-part .row .con {
     display: inline-block;
     padding: 6px;
     vertical-align: middle;
 }
-.notice-advance-part .row.custom .con {
+.twperfectdatepicker .notice-advance-part .row.custom .con {
     padding: 6px 8px 6px 10px;
 }
-.notice-advance-part .row .con.word-con {
+.twperfectdatepicker .notice-advance-part .row .con.word-con {
     margin-left: 3px;
 }
-.notice-advance-part .row:active {
+.twperfectdatepicker .notice-advance-part .row:active {
     background-color: #eee;
 }
-.notice-advance-part .row {
+.twperfectdatepicker .notice-advance-part .row {
     padding: 0 10px;
 }
-.notice-advance-part .row.custom {
+.twperfectdatepicker .notice-advance-part .row.custom {
     padding: 5px 10px;
 }
-.notice-advance-part .checkbox-con i.iconfont {
+.twperfectdatepicker .notice-advance-part .checkbox-con i.iconfont {
     font-size: 30px;
     color: #999;
 }
-.notice-advance-part .word-con span.word {
+.twperfectdatepicker .notice-advance-part .word-con span.word {
     font-weight: bold;
     color: #555;
     font-size: 15px;
     position: relative;
     top: -1px;
 }
-.notice-advance-part .row.custom .checkbox-con i.iconfont {
+.twperfectdatepicker .notice-advance-part .row.custom .checkbox-con i.iconfont {
     font-size: 20px;
 }
 
 
 
-.notice-advance-custom-part {
+.twperfectdatepicker .notice-advance-custom-part {
     box-shadow: 0 0 10px #aaaaaa;
 }
-.notice-advance-custom-part .header {
+.twperfectdatepicker .notice-advance-custom-part .header {
     padding: 19px 22px;
 }
-.notice-advance-custom-part .header .word-con span.word {
+.twperfectdatepicker .notice-advance-custom-part .header .word-con span.word {
     font-size: 18px;
     font-weight: bold;
     color: #555;
 }
-.select-con {
+.twperfectdatepicker .select-con {
     padding: 8px 22px;
     overflow: hidden;
 }
-.select-con .select-cell {
+.twperfectdatepicker .select-con .select-cell {
     width: 170px;
     border-bottom: 2px solid #999;
     display: inline-block;
@@ -388,28 +391,46 @@
     position: relative;
     height: 35px;
 }
-.select-con .select-cell:hover {
+.twperfectdatepicker .select-con .select-cell:hover {
     background-color: #eeeeee;
 }
-.select-con .select-cell.time {
+.twperfectdatepicker .select-con .select-cell.time {
     margin-right: 15px;
 }
-.select-con .select-cell .icon-con {
+.twperfectdatepicker .select-con .select-cell .icon-con {
     position: absolute;
     right: -2px;
     top: 8px;
 }
-.select-con .select-cell div span.word {
+.twperfectdatepicker .select-con .select-cell div span.word {
     line-height: 36px;
     margin-left: 1px;
 }
 
 
-
-
-
-
-
+.twperfectdatepicker-btn-con {
+    cursor: pointer;
+    color: #777;
+}
+.twperfectdatepicker-btn-con:HOVER {
+    font-weight: bold;
+}
+.twperfectdatepicker-btn-con .con {
+    display: inline-block;
+    vertical-align: middle;
+}
+.twperfectdatepicker-btn-con .con.hide {
+    display: none;
+}
+.twperfectdatepicker-btn-con .con i.iconfont {
+    font-size: 20px;
+    display: block;
+    height: 20px;
+    line-height: 17px;
+}
+.twperfectdatepicker-btn-con .con.icon-con {
+    margin-right: 5px;
+}
 
 
 
