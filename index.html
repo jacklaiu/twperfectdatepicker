@@ -11,12 +11,12 @@
         padding: 50px
     }
     @font-face {
-        font-family: 'iconfont';  /* project id 809764 */
-        src: url('//at.alicdn.com/t/font_809764_nhq727j478g.eot');
-        src: url('//at.alicdn.com/t/font_809764_nhq727j478g.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_809764_nhq727j478g.woff') format('woff'),
-        url('//at.alicdn.com/t/font_809764_nhq727j478g.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_809764_nhq727j478g.svg#iconfont') format('svg');
+        font-family: 'iconfont';  /* project id 240568 */
+        src: url('//at.alicdn.com/t/font_240568_4ic0whd9o9o.eot');
+        src: url('//at.alicdn.com/t/font_240568_4ic0whd9o9o.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_240568_4ic0whd9o9o.woff') format('woff'),
+        url('//at.alicdn.com/t/font_240568_4ic0whd9o9o.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_240568_4ic0whd9o9o.svg#iconfont') format('svg');
     }
     .iconfont{
         font-family:"iconfont" !important;
@@ -31,9 +31,18 @@
     .twperfectdatepicker-btn:HOVER {
         color: #555
     }
+    .twperfectdatepicker-btn2{
+        color: #aaa; font-size: 24px; cursor: pointer;
+    }
+    .twperfectdatepicker-btn2:HOVER {
+        color: #555
+    }
 </style>
 <body>
-<i class="iconfont twperfectdatepicker-btn" onselectstart="return false">&#xe659;</i>
+
+<div class="twperfectdatepicker-con"><span>设置时间</span></div>
+
+
 <script src="js/lunar.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.22.1/locale/zh-cn.js"></script>
@@ -42,7 +51,10 @@
 <script src="js/twperfectdatepicker.js"></script>
 <script>
     debugger;
-    $('.twperfectdatepicker-btn').twperfectdatepicker({});
+    $('.twperfectdatepicker-con').twperfectdatepicker({
+        onConfirm: function(ret) {
+        }
+    });
 </script>
 </body>
 </html>

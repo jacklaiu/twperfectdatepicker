@@ -111,9 +111,11 @@
 .twperfectdatepicker .footer a:active {
     background-color: #eee;
 }
-.twperfectdatepicker .footer a.confirm {
+.twperfectdatepicker .footer a.confirm,
+.twperfectdatepicker .footer a.cancel {
     margin-left: 10px;
 }
+
 /*extra-container*/
 .twperfectdatepicker .extra-container {
     border: 1px solid #ddd;
