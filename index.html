@@ -25,16 +25,10 @@
         -webkit-text-stroke-width: 0.2px;
         -moz-osx-font-smoothing: grayscale;
     }
-    .twperfectdatepicker-btn{
+    .twperfectdatepicker-con{
         color: #aaa; font-size: 24px; cursor: pointer;
     }
-    .twperfectdatepicker-btn:HOVER {
-        color: #555
-    }
-    .twperfectdatepicker-btn2{
-        color: #aaa; font-size: 24px; cursor: pointer;
-    }
-    .twperfectdatepicker-btn2:HOVER {
+    .twperfectdatepicker-con:HOVER {
         color: #555
     }
 </style>
@@ -50,10 +44,14 @@
 <script src="dependency/twlayer/js/twlayer.js"></script>
 <script src="js/twperfectdatepicker.js"></script>
 <script>
-    debugger;
-    $('.twperfectdatepicker-con').twperfectdatepicker({
+    var $con = $('.twperfectdatepicker-con');
+    $con.twperfectdatepicker({
         onConfirm: function(ret) {
-        }
+            ret.starttime && $con.attr('starttime', ret.starttime);
+            ret.endtime && $con.attr('endtime', ret.endtime);
+            ret.timezone && $con.attr('timezone', ret.timezone);
+        },
+        enableTimezone: true
     });
 </script>
 </body>

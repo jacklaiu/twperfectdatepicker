@@ -48,18 +48,26 @@
                                 //fill on event
                             '</div>',*/
                         '</div>',
-                        /*'<div>',
-                            '<div class="row notice con" style="border-bottom: 0">',
+                        '<div class="extra-btn-con">',
+                            /*'<div class="row notice con" style="border-bottom: 0">',
                                 '<div class="cell icon-cell"><i class="iconfont">&#xe62e;</i></div>',
                                 '<div class="cell word-cell"><span class="word">设置提醒</span></div>',
                             '</div>',
                             '<div class="row repeat con" style="border-bottom: 0">',
                                 '<div class="cell icon-cell"><i class="iconfont">&#xe7b1;</i></div>',
                                 '<div class="cell word-cell"><span class="word">设置重复</span></div>',
-                            '</div>',
-                        '</div>',*/
+                            '</div>',*/
+	                        '<div class="row timezone con ',(me.settings.enableTimezone ? '':'hide'),'" style="border-bottom: 0" onselectstart="return false">',
+		                        '<div class="cell icon-cell"><i class="iconfont">&#xe767;</i></div>',
+		                        '<div class="cell word-cell"><span class="word"><span class="title">设置时区</span><span class="showtimezone"></span></div>',
+		                    '</div>',
+                        '</div>',
                         '<div class="footer"><a href="javascript:;" class="me_cancel">取消</a><a href="javascript:;" class="me_confirm">确定</a></div>',
 					'</div>',
+					
+					
+					
+					
 					'<div class="extra-container">',
                         '<div class="simple-datepicker-part part hide">',
                             '<div class="con year-con">',(function() {
@@ -73,6 +81,34 @@
                         '</div>',
                         '<div class="datepicker-part part hide">',
                             //fill on event
+                        '</div>',
+                        '<div class="timezone-part part hide">',
+                            '<div class="timezone-item remove-timezone"><div class="word-con"><span class="word">取消</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+1200"><div class="word-con"><span class="word">GMT+12:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+1100"><div class="word-con"><span class="word">GMT+11:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+1000"><div class="word-con"><span class="word">GMT+10:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0900"><div class="word-con"><span class="word">GMT+09:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0800"><div class="word-con"><span class="word">GMT+08:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0700"><div class="word-con"><span class="word">GMT+07:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0600"><div class="word-con"><span class="word">GMT+06:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0500"><div class="word-con"><span class="word">GMT+05:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0400"><div class="word-con"><span class="word">GMT+04:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0300"><div class="word-con"><span class="word">GMT+03:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0200"><div class="word-con"><span class="word">GMT+02:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0100"><div class="word-con"><span class="word">GMT+01:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT+0000"><div class="word-con"><span class="word">GMT+00:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0100"><div class="word-con"><span class="word">GMT-01:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0200"><div class="word-con"><span class="word">GMT-02:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0300"><div class="word-con"><span class="word">GMT-03:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0400"><div class="word-con"><span class="word">GMT-04:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0500"><div class="word-con"><span class="word">GMT-05:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0600"><div class="word-con"><span class="word">GMT-06:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0700"><div class="word-con"><span class="word">GMT-07:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0800"><div class="word-con"><span class="word">GMT-08:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-0900"><div class="word-con"><span class="word">GMT-09:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-1000"><div class="word-con"><span class="word">GMT-10:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-1100"><div class="word-con"><span class="word">GMT-11:00</span></div></div>',
+                        	'<div class="timezone-item" timezone="GMT-1200"><div class="word-con"><span class="word">GMT-12:00</span></div></div>',
                         '</div>',
                         '<div class="notice-advance-part part hide" onselectstart="return false">',
                             '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">无</span></div></div>',
@@ -320,6 +356,10 @@
                         '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate '+endhide+'">继续选择结束时间</a>'
                 }()),'<a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="confirm">确定</a></div>',
             ].join('');
+        },
+        
+        getTimezoneHtml: function() {
+        	
         }
     };
 	var func = {
@@ -531,10 +571,22 @@
             });
         },
 
+        refreshTimezone: function(me, timezone, timezonename) {
+            var $el = me.settings.$me;
+            timezone ? $el.attr('timezone', timezone) : $el.removeAttr('timezone');
+            if(timezone) {
+                if(!timezonename) {
+                    timezonename = timezone.substring(0, timezone.length - 2) + ':00';
+                }
+                me.settings.$main_container.find('.row.timezone span.showtimezone').html("时区：" + timezonename);
+                me.settings.$main_container.find('.row.timezone span.title').hide();
+            }else {
+                me.settings.$main_container.find('.row.timezone span.showtimezone').html('');
+                me.settings.$main_container.find('.row.timezone span.title').show();
+            }
+        },
+
         refreshMeByDate: function(me, date) {
-
-	        
-
 	        var $el = me.settings.$me;
 
 	        me.settings.$main_part.find('.lf.se').addClass('hide');
@@ -729,6 +781,21 @@
                 });
             });
         },
+        showTimezone:function(me) {
+            return new Promise(function(resolve) {
+                me.settings.$timezone.removeClass('hide').fadeIn(50, 'swing', function () {
+                    resolve(true);
+                })
+            });
+        },
+        hideTimezone: function(me) {
+            return new Promise(function(resolve) {
+                me.settings.$timezone.fadeOut(50, 'swing', function() {
+                    me.settings.$timezone.addClass('hide');
+                    resolve(true);
+                });
+            });
+        },
         hideTimePicker: function(me) {
             return new Promise(function(resolve) {
                 me.settings.$timepicker.fadeOut(50, 'swing', function() {
@@ -743,6 +810,9 @@
 	        //     var $m = $marks.eq(i);
 	        //     $m.removeClass('mark');
             // }
+
+            func.hideTimezone(me);
+
             me.settings.$datepicker.find('.mark').each(function () {
                 $(this).removeClass('mark');
             });
@@ -802,6 +872,9 @@
 			//me.settings.$simple_datepicker = $html.find('.simple-datepicker-part');
 			me.settings.$notice_advance = $html.find('.notice-advance-part');
 			me.settings.$notice_advance_custom = $html.find('.notice-advance-custom-part');
+			
+			me.settings.$timezone = $html.find('.timezone-part');
+			
             //func.initNoticeAdanceCustom(me);
 			me.settings.$repeat = $html.find('.repeat-part');
 			$('body').append($html);
@@ -834,15 +907,17 @@
                 func.reset(me);
                 func.hide(me);
             });
+
+
 			
-			me.settings.$notice_advance.on('click', '.row.custom', function () {
+			/*me.settings.$notice_advance.on('click', '.row.custom', function () {
                 func.hideNoticeAdvance(me).then(function () {
                     return func.showNoticeAdvanceCustom(me);
                 }).then(function () {
 
                 });
-            });
-			me.settings.$notice_advance.on('click', '.row.simple', function() {
+            });*/
+			/*me.settings.$notice_advance.on('click', '.row.simple', function() {
 			    var $this = $(this);
 			    var $rows = $this.parent().find('.row.simple');
 			    $rows.each(function() {
@@ -856,9 +931,9 @@
 			        $this.addClass('checked');
                     $this.find('i.iconfont').removeAttr('style').html('&#xe671;').css('color', '#6683DF');
                 }
-            });
+            });*/
 
-            me.settings.$main_container.on('click', '.row.repeat', function () {
+            /*me.settings.$main_container.on('click', '.row.repeat', function () {
                 var $this = $(this);
                 alert('repeat');
             });
@@ -870,7 +945,7 @@
                 }).then(function () {
 
                 });
-            });
+            });*/
 			//timepicker $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
             // me.settings.$timepicker.on('click', '.time-min-unit', function () {
@@ -892,7 +967,9 @@
 					    func.showMainPart(me).then(function() {
                             var starttime = $this.attr('starttime');
                             var endtime = $this.attr('endtime');
+                            var timezone = $this.attr('timezone');
                             func.refreshMeByStarttimeAndEndtime(me, starttime, endtime);
+                            func.refreshTimezone(me, timezone);
                         });
                     });
 				}else {
@@ -997,19 +1074,20 @@
                     //$et.html(endhms);
 				});
             });
-            me.settings.$main_part.on('click', '.row.notice', function() {
+            /*me.settings.$main_part.on('click', '.row.notice', function() {
                 alert('notice');
             });
             me.settings.$main_part.on('click', '.row.repeat', function() {
                 alert('repeat');
-            });
+            });*/
             me.settings.$main_container.on('click', '.me_confirm', function() {
                 
                 func.beforeHide(me);
                 var $el = me.settings.$me;
                 var starttime = $el.attr('starttime') ? $el.attr('starttime') : moment().add(30, 'minutes').format('YYYY-MM-DD HH:mm:ss');
                 var endtime = $el.attr('endtime') ? $el.attr('endtime') : moment().add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss');
-                me.settings.onConfirm({starttime: starttime, endtime: endtime});
+                var timezone = $el.attr('timezone') ? $el.attr('timezone'): '';
+                me.settings.onConfirm({starttime: starttime, endtime: endtime, timezone: timezone});
                 func.hide(me);
                 me.$ele.attr('starttime', starttime).attr('endtime', endtime);
                 // me.$ele.find('div.con.origin').addClass('hide');
@@ -1026,11 +1104,21 @@
                 // me.$ele.find('div.con.time').addClass('hide');
                 // me.$ele.find('div.con.origin').removeClass('hide');
             });
+
+            debugger;
+            me.settings.$main_container.on('click', '.extra-btn-con .row.timezone', function() {
+                debugger;
+                Process.chooseTimezone(me, function(timezone, timezonename) {
+                    debugger;
+                    func.refreshTimezone(me, timezone, timezonename);
+                });
+            });
             $(window).resize(function() {
                 func.beforeShow(me);
             });
             //End main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 		},
+
 		beforeShow: function(me) {
 			var offset = me.$ele.offset();
 			me.settings.$me.css('top', offset.top + Util.realHeight(me.$ele) + 10).css('left', offset.left);
@@ -1041,6 +1129,28 @@
 	};
 
 	var Process = {
+
+	    chooseTimezone: function(me, cb) {
+	        var timezone;
+	        func.hideMainPart(me).then(function () {
+                return func.showTimezone(me);
+            }).then(function () {
+                me.settings.$timezone.off('click').on('click', '.timezone-item', function() {
+                    var $this = $(this);
+                    var timezone = $(this).attr('timezone'), timezonename = $(this).find('span.word').html();
+
+                    func.hideTimezone(me).then(function() {
+                        return func.showMainPart(me);
+                    }).then(function () {
+                        if($this.hasClass('remove-timezone')) {
+                            cb();
+                        }else {
+                            cb(timezone, timezonename);
+                        }
+                    });
+                });
+            })
+        },
 
 	    selectSingleStarttime: function(me, cb) {
 	        var date, hms;
@@ -1061,7 +1171,6 @@
                     me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins($this.attr('hour'), starttime))
                         .find('.time-min-unit').off('click').on('click', function () {
                         hms = $this.attr('hms');
-
                     });
                 });
             });
@@ -1276,7 +1385,8 @@
                 //...
             },
             starttime: moment().startOf('hour').add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss'),
-            endtime: moment().startOf('hour').add(2, 'hours').format('YYYY-MM-DD HH:mm:ss')
+            endtime: moment().startOf('hour').add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'),
+            enableTimezone: false
 		};
         this.settings = $.extend({}, defaults, opt);
         this.settings.id = 'twperfectdatepicker_' + Util.currentMills();

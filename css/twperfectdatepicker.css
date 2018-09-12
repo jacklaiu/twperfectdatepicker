@@ -28,7 +28,7 @@
     border-right: 1px solid rgba(200, 200, 200, 0.3);
     height: 100%;
 }
-.twperfectdatepicker .main-part .row.con .lf:active, .row.con.notice:active, .row.con.repeat:active{
+.twperfectdatepicker .main-part .row.con .lf:active, .twperfectdatepicker .main-container .row.con:active {
     background-color: #eff2fc;
 }
 .twperfectdatepicker .main-part .row.con .lf.right {
@@ -47,6 +47,7 @@
     color: #6683DF;
     font-size: 16px;
     font-weight: bold;
+    line-height: 22px;
 }
 .twperfectdatepicker .main-part .row.con .lf .tips.cell span.word {
     color: #757575;
@@ -435,6 +436,41 @@
 }
 
 
+
+.twperfectdatepicker .main-container .row.timezone {
+    padding: 15px;
+    color: #757575;
+}
+.twperfectdatepicker .main-container .row.timezone .cell {
+    display: inline-block;
+    vertical-align: middle;
+}
+.twperfectdatepicker .main-container .row.timezone .cell i.iconfont {
+    display: block;
+    width: 21px;
+    height: 23px;
+    font-size: 21px;
+    line-height: 20px;
+    margin-right: 10px;
+}
+.twperfectdatepicker .extra-container .timezone-part .timezone-item {
+    padding: 8px 12px;
+}
+.twperfectdatepicker .extra-container .timezone-part .timezone-item:hover {
+    color: #333333;
+    background-color: #eeeeee;
+}
+.twperfectdatepicker .extra-container .timezone-part {
+    color: #757575;
+    font-size: 14px;
+    height: 280px;
+    overflow: auto;
+    cursor: pointer;
+}
+.twperfectdatepicker .extra-btn-con {
+    font-size: 14px;
+    color: #757575;
+}
 
 
 
