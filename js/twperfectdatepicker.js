@@ -49,16 +49,16 @@
                             '</div>',*/
                         '</div>',
                         '<div class="extra-btn-con">',
-                            /*'<div class="row notice con" style="border-bottom: 0">',
-                                '<div class="cell icon-cell"><i class="iconfont">&#xe62e;</i></div>',
+                            '<div class="row notice con ',(me.settings.enableNoticeAdvance ? '':'hide'),'" style="border-bottom: 0">',
+                                '<div class="cell icon-cell"><i class="iconfont">&#xe79b;</i></div>',
                                 '<div class="cell word-cell"><span class="word">设置提醒</span></div>',
                             '</div>',
-                            '<div class="row repeat con" style="border-bottom: 0">',
-                                '<div class="cell icon-cell"><i class="iconfont">&#xe7b1;</i></div>',
-                                '<div class="cell word-cell"><span class="word">设置重复</span></div>',
-                            '</div>',*/
+                /*'<div class="row repeat con" style="border-bottom: 0">',
+                    '<div class="cell icon-cell"><i class="iconfont">&#xe7b1;</i></div>',
+                    '<div class="cell word-cell"><span class="word">设置重复</span></div>',
+                '</div>',*/
 	                        '<div class="row timezone con ',(me.settings.enableTimezone ? '':'hide'),'" style="border-bottom: 0" onselectstart="return false">',
-		                        '<div class="cell icon-cell"><i class="iconfont">&#xe767;</i></div>',
+		                        '<div class="cell icon-cell"><i class="iconfont" style="font-size: 19px;">&#xe767;</i></div>',
 		                        '<div class="cell word-cell"><span class="word"><span class="title">设置时区</span><span class="showtimezone"></span></div>',
 		                    '</div>',
                         '</div>',
@@ -111,16 +111,22 @@
                         	'<div class="timezone-item" timezone="GMT-1200"><div class="word-con"><span class="word">GMT-12:00</span></div></div>',
                         '</div>',
                         '<div class="notice-advance-part part hide" onselectstart="return false">',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">无</span></div></div>',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">准时</span></div></div>',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">提前5分钟</span></div></div>',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">提前30分钟</span></div></div>',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">提前1小时</span></div></div>',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">提前1天</span></div></div>',
-                            '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe76a;</i></div><div class="word-con con"><span class="word">提前2天</span></div></div>',
-                            '<div class="row custom"><div class="checkbox-con con"><i class="iconfont">&#xe600;</i></div><div class="word-con con"><span class="word">自定义</span></div></div>',
+                            '<div class="notice-advance-item remove-notice-advance"><div class="word-con"><span class="word">取消</span></div></div>',
+                            '<div class="notice-advance-item" advance="0"><div class="word-con"><span class="word">准时</span></div></div>',
+                            '<div class="notice-advance-item" advance="300000"><div class="word-con"><span class="word">提前5分钟</span></div></div>',
+                            '<div class="notice-advance-item" advance="1800000"><div class="word-con"><span class="word">提前30分钟</span></div></div>',
+                            '<div class="notice-advance-item" advance="3600000"><div class="word-con"><span class="word">提前1小时</span></div></div>',
+                            '<div class="notice-advance-item" advance="86400000"><div class="word-con"><span class="word">提前1天</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">无</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">准时</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">提前5分钟</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">提前30分钟</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">提前1小时</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">提前1天</span></div></div>',
+                            // '<div class="row simple"><div class="checkbox-con con"><i class="iconfont">&#xe7ae;</i></div><div class="word-con con"><span class="word">提前2天</span></div></div>',
+                            // '<div class="row custom"><div class="checkbox-con con"><i class="iconfont">&#xe600;</i></div><div class="word-con con"><span class="word">自定义</span></div></div>',
                         '</div>',
-                        /*'<div class="notice-advance-custom-part part hide">',
+                        '<div class="notice-advance-custom-part part hide">',
                             '<div class="header"><div class="word-con"><span class="word">自定义提醒</span></div></div>',
                             '<div class="body">',
                                 '<div class="select-con">',
@@ -132,7 +138,7 @@
                         '</div>',
                         '<div class="repeat-part part hide">',
                             //fill on event
-                        '</div>',*/
+                        '</div>',
 				    '</div>',
 				'</div>'
 			].join('');
@@ -585,7 +591,6 @@
                 me.settings.$main_container.find('.row.timezone span.title').show();
             }
         },
-
         refreshMeByDate: function(me, date) {
 	        var $el = me.settings.$me;
 
@@ -812,6 +817,8 @@
             // }
 
             func.hideTimezone(me);
+            func.hideNoticeAdvance(me);
+            func.hideNoticeAdvanceCustom(me);
 
             me.settings.$datepicker.find('.mark').each(function () {
                 $(this).removeClass('mark');
@@ -922,11 +929,11 @@
 			    var $rows = $this.parent().find('.row.simple');
 			    $rows.each(function() {
 			        var $this = $(this);
-			        $this.removeClass('checked').find('i.iconfont').html('&#xe76a;').removeAttr('style');
+			        $this.removeClass('checked').find('i.iconfont').html('&#xe7ae;').removeAttr('style');
                 });
 			    if($this.hasClass('checked')) {
 			        $this.removeClass('checked');
-			        $this.find('i.iconfont').removeAttr('style').html('&#xe76a;');
+			        $this.find('i.iconfont').removeAttr('style').html('&#xe7ae;');
                 }else {
 			        $this.addClass('checked');
                     $this.find('i.iconfont').removeAttr('style').html('&#xe671;').css('color', '#6683DF');
@@ -1113,6 +1120,13 @@
                     func.refreshTimezone(me, timezone, timezonename);
                 });
             });
+            
+            me.settings.$main_container.on('click', '.extra-btn-con .row.notice', function () {
+                Process.chooseNoticeAdvance(me, function (duration_mills) {
+                    
+                });
+            });
+            
             $(window).resize(function() {
                 func.beforeShow(me);
             });
@@ -1130,6 +1144,13 @@
 
 	var Process = {
 
+        chooseNoticeAdvance: function(me, cb) {
+            func.hideMainPart(me).then(function () {
+                return func.showNoticeAdvance(me);
+            }).then(function () {
+
+            });
+        },
 	    chooseTimezone: function(me, cb) {
 	        var timezone;
 	        func.hideMainPart(me).then(function () {
@@ -1386,10 +1407,13 @@
             },
             starttime: moment().startOf('hour').add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss'),
             endtime: moment().startOf('hour').add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'),
-            enableTimezone: false
+            enableTimezone: false,
+            enableNoticeAdvance: false
 		};
         this.settings = $.extend({}, defaults, opt);
         this.settings.id = 'twperfectdatepicker_' + Util.currentMills();
+
+
 
 		// var $btn = $(['<div class="twperfectdatepicker-btn-con" twperfectdatepickerid="',this.settings.id,'">',
         //
@@ -1410,7 +1434,6 @@
 		this.$ele = $(ele);
 
 		this.$ele.addClass('twperfectdatepicker-con');
-
 		func.init(this);
 		func.bindEvent(this);
 	};

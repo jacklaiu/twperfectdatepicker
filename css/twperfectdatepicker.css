@@ -53,7 +53,7 @@
     color: #757575;
     font-size: 14px;
 }
-.twperfectdatepicker .row.con.notice {
+/*.twperfectdatepicker .row.con.notice {
     padding: 15px 20px;
     font-size: 0;
 }
@@ -99,7 +99,7 @@
 .twperfectdatepicker .row.con.repeat .word-cell span.word {
     font-size: 16px;
     color: #aaa;
-}
+}*/
 .twperfectdatepicker .footer {
     padding: 20px 10px;
     text-align: right;
@@ -330,7 +330,7 @@
 
 /*notice-advance*/
 .twperfectdatepicker .notice-advance-part {
-    width: 300px;
+    width: 160px;
     box-shadow: 0 0 10px #aaaaaa;
     padding: 10px 0;
 }
@@ -437,15 +437,15 @@
 
 
 
-.twperfectdatepicker .main-container .row.timezone {
+.twperfectdatepicker .main-container .extra-btn-con .row {
     padding: 15px;
     color: #757575;
 }
-.twperfectdatepicker .main-container .row.timezone .cell {
+.twperfectdatepicker .main-container .extra-btn-con .row .cell {
     display: inline-block;
     vertical-align: middle;
 }
-.twperfectdatepicker .main-container .row.timezone .cell i.iconfont {
+.twperfectdatepicker .main-container .extra-btn-con .row .cell i.iconfont {
     display: block;
     width: 21px;
     height: 23px;
@@ -460,6 +460,7 @@
     color: #333333;
     background-color: #eeeeee;
 }
+
 .twperfectdatepicker .extra-container .timezone-part {
     color: #757575;
     font-size: 14px;
@@ -472,7 +473,13 @@
     color: #757575;
 }
 
-
+.twperfectdatepicker .extra-container .notice-advance-part .notice-advance-item {
+    padding: 8px 22px;
+}
+.twperfectdatepicker .extra-container .notice-advance-part .notice-advance-item:hover {
+    color: #333333;
+    background-color: #eeeeee;
+}
 
 
 
