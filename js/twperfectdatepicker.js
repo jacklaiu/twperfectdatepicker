@@ -205,7 +205,7 @@
             }
 	        return $html[0].outerHTML;
         },
-        getTimepickerHtml_mins: function(hour, starthms) {
+        getTimepickerHtml_mins: function(me, hour, starthms) {
 	        
             var s_hhmm;
             if(starthms && starthms.length === 19) {
@@ -213,8 +213,9 @@
             }else {
                 s_hhmm = starthms ? moment(moment().format('YYYY-MM-DD') + ' ' + starthms).format('HH:mm'): void(0);
             }
+            var isMinuteDuration_30 = me.settings.minuteDuration === 30;
 
-            var $html = $([
+            var $html = !isMinuteDuration_30 ? $([
                 '<div><div class="row">',
                 '<div class="time-min-unit time-unit" hms="',hour,':00" onselectstart="return false">',hour,':00</div>',
                 '<div class="time-min-unit time-unit" hms="',hour,':05" onselectstart="return false">',hour,':05</div>',
@@ -233,7 +234,17 @@
                 '<div class="time-min-unit time-unit" hms="',hour,':50" onselectstart="return false">',hour,':50</div>',
                 '<div class="time-min-unit time-unit" hms="',hour,':55" onselectstart="return false">',hour,':55</div>',
                 '</div></div>'
-            ].join(''));
+            ].join('')) :
+                $([
+                    '<div><div class="row">',
+                        '<div class="time-min-unit time-unit" hms="',hour,':00" onselectstart="return false">',hour,':00</div>',
+                        '<div class="time-min-unit time-unit" hms="',hour,':30" onselectstart="return false">',hour,':30</div>',
+                    '</div></div>'
+                ].join(''));
+
+
+
+
             if(s_hhmm) {
                 var $tus = $html.find('.time-unit');
                 for(var i = 0, leni = $tus.length; i < leni; i++) {
@@ -1189,7 +1200,7 @@
                         alert('结束时间应大于开始时间');
                         return;
                     }
-                    me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins($this.attr('hour'), starttime))
+                    me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(me, $this.attr('hour'), starttime))
                         .find('.time-min-unit').off('click').on('click', function () {
                         hms = $this.attr('hms');
                     });
@@ -1242,7 +1253,7 @@
                                 alert('结束时间应大于开始时间');
                                 return;
                             }
-                            me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins($this.attr('hour'), starttime))
+                            me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(me, $this.attr('hour'), starttime))
                                 .find('.time-min-unit').off('click').on('click', function () {
                                     
                                     var $this = $(this);
@@ -1275,7 +1286,7 @@
                             
                             var $this = $(this);
                             var hour = $this.attr('hour');
-                            me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(hour));
+                            me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(me, hour));
                             me.settings.$timepicker.find('.time-min-unit').off('click').on('click', function() {
                                 
                                 var $this = $(this);
@@ -1289,7 +1300,7 @@
                                         return;
                                     }
                                     var hour = $this.attr('hour');
-                                    me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(hour, starthms));
+                                    me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(me, hour, starthms));
                                     me.settings.$timepicker.find('.time-min-unit').off('click').on('click', function() {
                                         
                                         var $this = $(this);
@@ -1408,7 +1419,8 @@
             starttime: moment().startOf('hour').add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss'),
             endtime: moment().startOf('hour').add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'),
             enableTimezone: false,
-            enableNoticeAdvance: false
+            enableNoticeAdvance: false,
+            minuteDuration: 5,//support 5/30
 		};
         this.settings = $.extend({}, defaults, opt);
         this.settings.id = 'twperfectdatepicker_' + Util.currentMills();
