@@ -117,12 +117,7 @@
     margin-left: 10px;
 }
 
-/*extra-container*/
-.twperfectdatepicker .extra-container {
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 10px #ddd;
-    border-radius: 4px;
-}
+
 /*timepicker-part*/
 .twperfectdatepicker .timepicker-part {
     font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
@@ -453,6 +448,15 @@
     line-height: 20px;
     margin-right: 10px;
 }
+/*extra-container*/
+.twperfectdatepicker .extra-container .simple-datepicker-part,
+.twperfectdatepicker .extra-container .datetime-con .datepicker-part,
+.twperfectdatepicker .extra-container .datetime-con .timepicker-part,
+.twperfectdatepicker .extra-container .datetime-con .datetime-result-con {
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px #ddd;
+    border-radius: 4px;
+}
 .twperfectdatepicker .extra-container .timezone-part .timezone-item {
     padding: 8px 12px;
 }
@@ -480,8 +484,81 @@
     color: #333333;
     background-color: #eeeeee;
 }
+.twperfectdatepicker .extra-container .datetime-result-con {
+    margin-bottom: 10px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #aaa;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .se-con {
+    padding: 10px;
+    font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .se-con.endtime-con {
+    margin-top: -10px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con.title-con {
+    margin-right: 8px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con.title-con span.word {
+    color: #aaa;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con {
+    margin-right: 6px;
+    padding: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con:HOVER {
+    color: #6683df;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con.active:HOVER {
+    color: #6683df;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con.active {
+    font-weight: bold;
+    color: #555;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .con.active span.word {
+    border-bottom: 1px solid #000;
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+.twperfectdatepicker .extra-container .datetime-result-con .btn-con {
+    position: absolute;
+    right: -60px;
+    top: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px #ddd;
+    border-radius: 4px;
+    padding: 13px 12px 13px 12px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .btn-con a {
+    display: block;
+    text-decoration: none;
+    color: #6693df;
+    font-size: 14px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .btn-con a:active {
+    font-weight: bold;
+}
