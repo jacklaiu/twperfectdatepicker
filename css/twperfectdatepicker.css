@@ -484,7 +484,11 @@
     color: #333333;
     background-color: #eeeeee;
 }
+
+
+
 .twperfectdatepicker .extra-container .datetime-result-con {
+    position: relative;
     margin-bottom: 10px;
 }
 .twperfectdatepicker .extra-container .datetime-result-con .con {
@@ -526,39 +530,17 @@
 .twperfectdatepicker .extra-container .datetime-result-con .con.active span.word {
     border-bottom: 1px solid #000;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .twperfectdatepicker .extra-container .datetime-result-con .btn-con {
     position: absolute;
-    right: -60px;
-    top: 0;
-    background: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 10px #ddd;
-    border-radius: 4px;
-    padding: 13px 12px 13px 12px;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
+.twperfectdatepicker .extra-container .datetime-result-con .btn-con:active {
+    background: #eeeeee;
 }
 .twperfectdatepicker .extra-container .datetime-result-con .btn-con a {
-    display: block;
     text-decoration: none;
-    color: #6693df;
     font-size: 14px;
-}
-.twperfectdatepicker .extra-container .datetime-result-con .btn-con a:active {
-    font-weight: bold;
+    color: #6879fd;
 }
