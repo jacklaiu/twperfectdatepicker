@@ -1111,6 +1111,8 @@
                 me.settings.$datepicker.find('.enddate').removeClass('enddate');
                 me.settings.$datepicker.find('.chosen').removeClass('chosen');
                 me.settings.$datepicker.find('.s2e').removeClass('s2e');
+                me.settings.enable_datepicker_showUnselectableStyle = false;
+                me.settings.$datepicker.find('.month-dates-con .date-col.date.unselectable').removeClass('unselectable');
                 if(isStarttime && isDateCon) {
                     datetime_con_func.activeAndSetStarttime_date(me, dateOrtime);
                     Process.chooseStarttime_date(me);
