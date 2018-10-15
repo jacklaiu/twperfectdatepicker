@@ -28,7 +28,10 @@
     border-right: 1px solid rgba(200, 200, 200, 0.3);
     height: 100%;
 }
-.twperfectdatepicker .main-part .row.con .lf:active, .twperfectdatepicker .main-container .row.con:active {
+.twperfectdatepicker .main-part .row.con .lf.start:active,
+.twperfectdatepicker .main-part .row.con .lf.end:active,
+.twperfectdatepicker .main-part .row.con .lf.date:active,
+.twperfectdatepicker .main-part .row.con .lf.time:active {
     background-color: #eff2fc;
 }
 .twperfectdatepicker .main-part .row.con .lf.right {
