@@ -544,3 +544,6 @@
     font-size: 14px;
     color: #6879fd;
 }
+.twperfectdatepicker .datepicker-part .body .row .date-col.unselectable {
+    color: #bbb;
+}
