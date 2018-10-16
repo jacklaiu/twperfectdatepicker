@@ -1114,20 +1114,16 @@
                 me.settings.enable_datepicker_showUnselectableStyle = false;
                 me.settings.$datepicker.find('.month-dates-con .date-col.date.unselectable').removeClass('unselectable');
                 if(isStarttime && isDateCon) {
-                    datetime_con_func.activeAndSetStarttime_date(me, dateOrtime);
-                    Process.chooseStarttime_date(me);
+                    Process.chooseStarttime_date(me, dateOrtime);
                 }
                 if(isStarttime && isTimeCon) {
-                    datetime_con_func.activeAndSetStarttime_time(me, dateOrtime);
-                    Process.chooseStarttime_time(me);
+                    Process.chooseStarttime_time(me, dateOrtime);
                 }
                 if(!isStarttime && isDateCon) {
-                    datetime_con_func.activeAndSetEndtime_date(me, dateOrtime);
-                    Process.chooseEndtime_date(me);
+                    Process.chooseEndtime_date(me, dateOrtime);
                 }
                 if(!isStarttime && isTimeCon) {
-                    datetime_con_func.activeAndSetEndtime_time(me, dateOrtime);
-                    Process.chooseEndtime_time(me);
+                    Process.chooseEndtime_time(me, dateOrtime);
                 }
             });
 			//datetime-con**************************************************************
@@ -1356,13 +1352,23 @@
 	//操作流程
 	var Process = {
 
-	    chooseStarttime_date: function(me) {
+	    chooseStarttime_date: function(me, date) {
+	        debugger;
+	        //如果timepicker还在，则empty它
+            var isTimepickerEmpty = me.settings.$timepicker.find('div').length === 0;
+            if(!isTimepickerEmpty) {
+                func.hideTimePicker(me).then(function() {
+                    me.settings.$timepicker.empty();
+                });
+            }
+	        var isDatepickerEmpty = me.settings.$datepicker.find('div').length === 0;
+	        if(isDatepickerEmpty) return;
+            datetime_con_func.activeAndSetStarttime_date(me, date);
 	        var isTimepickerHide = me.settings.$timepicker.hasClass('hide');
 	        var step = isTimepickerHide ? func.hideTimePicker(me): (function() {return new Promise(function(resolve) {resolve()})}());
             step.then(function(ret) {
                 return func.showDatePicker(me);
             }).then(function() {
-
                 //datepicker不可选日置灰处理
                 me.settings.enable_datepicker_showUnselectableStyle = true;
                 var endtime_date = datetime_con_func.getEndtime_date(me);
@@ -1374,7 +1380,6 @@
                         $d.addClass('unselectable');
                     }
                 }
-
                 //清理：
                 me.settings.$datepicker.find('.tips-cell').remove();
                 me.settings.$datepicker.find('.show-month-con .word-cell').append('<div class="tips-cell cell choose_startdate"><span class="word">选择开始日</span></div>');
@@ -1386,9 +1391,7 @@
                 me.settings.$datepicker.find('a.choose_endtime_onenddate').addClass('hide');
 
                 me.settings.$datepicker.find('a.choose').off('click').on('click', function() {
-
                     debugger;
-
                     var isNowChooseStartDate = me.settings.$datetime_con.find('.starttime-con .date-con').hasClass('active');
                     var isNowChooseEndDate = me.settings.$datetime_con.find('.endtime-con .date-con').hasClass('active');
                     if(isNowChooseStartDate) {
@@ -1410,8 +1413,11 @@
 
             });
         },
-        chooseStarttime_time: function(me) {
+        chooseStarttime_time: function(me, time) {
             debugger;
+            var isDatepickerEmpty = me.settings.$datepicker.find('div').length === 0;
+            if(isDatepickerEmpty) return;
+            datetime_con_func.activeAndSetStarttime_time(me, time);
             var isDatepickerHide = me.settings.$datepicker.hasClass('hide');
             var step = isDatepickerHide ? (function() {
                 return new Promise(function(resolve) {
@@ -1441,8 +1447,6 @@
                 me.settings.$datepicker.find('.tips-cell').remove();
                 me.settings.$datepicker.find('a.choose').addClass('hide');
 
-
-
                 return (function() {
                     return new Promise(function(resolve) {
                         debugger;
@@ -1464,7 +1468,20 @@
                                     return;
                                 }
                                 var hms = $this.attr('hms');
+                                me.settings.$datetime_con.removeClass('hide');
                                 me.settings.$timepicker.fadeOut(50, 'swing', function() {
+
+                                    if(!isDatepickerEmpty && me.settings.$datepicker.hasClass('hide')) {
+                                        func.showDatePicker(me);
+                                    }
+                                    /*func.showDatePicker(me).then(function() {
+                                        if(!me.settings.$datepicker.html()) {
+                                            var date = datetime_con_func.getStarttime_date(me);
+                                            func._refreshDatepicker(me, {chosenDate: date, cb: function (ret) {
+                                                    cb ? cb(ret): void(0);
+                                                }});
+                                        }
+                                    });*/
                                     me.settings.$timepicker.addClass('hide').empty();
                                     resolve(hms);
                                     var starttime_date = datetime_con_func.getStarttime_date(me);
@@ -1491,7 +1508,18 @@
                 // }, 500)
             });
         },
-        chooseEndtime_date: function(me) {
+        chooseEndtime_date: function(me, date) {
+	        debugger;
+            //如果timepicker还在，则empty它
+            var isTimepickerEmpty = me.settings.$timepicker.find('div').length === 0;
+            if(!isTimepickerEmpty) {
+                func.hideTimePicker(me).then(function() {
+                    me.settings.$timepicker.empty();
+                });
+            }
+            var isDatepickerEmpty = me.settings.$datepicker.find('div').length === 0;
+            if(isDatepickerEmpty) return;
+            datetime_con_func.activeAndSetEndtime_date(me, date);
             var isTimepickerHide = me.settings.$timepicker.hasClass('hide');
             var step = isTimepickerHide ? func.hideTimePicker(me): (function() {return new Promise(function(resolve) {resolve()})}());
             step.then(function(ret) {
@@ -1541,8 +1569,11 @@
 
             });
         },
-        chooseEndtime_time: function(me) {
+        chooseEndtime_time: function(me, time) {
 	        debugger;
+            var isDatepickerEmpty = me.settings.$datepicker.find('div').length === 0;
+            if(isDatepickerEmpty) return;
+            datetime_con_func.activeAndSetEndtime_time(me, time);
             var isDatepickerHide = me.settings.$datepicker.hasClass('hide');
             var step = isDatepickerHide ? (function() {
                 return new Promise(function(resolve) {
@@ -1597,10 +1628,22 @@
                                 }
                                 var hms = $this.attr('hms');
                                 me.settings.$timepicker.fadeOut(50, 'swing', function() {
+                                    if(!isDatepickerEmpty && me.settings.$datepicker.hasClass('hide')) {
+                                        func.showDatePicker(me);
+                                    }
+                                    /*func.showDatePicker(me).then(function() {
+                                        if(!me.settings.$datepicker.html()) {
+                                            var date = datetime_con_func.getStarttime_date(me);
+                                            func._refreshDatepicker(me, {chosenDate: date, cb: function (ret) {
+                                                    cb ? cb(ret): void(0);
+                                                }});
+                                        }
+                                    });*/
                                     me.settings.$timepicker.addClass('hide').empty();
                                     resolve(hms);
                                     var starttime_date = datetime_con_func.getStarttime_date(me);
                                     me.settings.$datepicker.find('.date-col.date[date="'+starttime_date+'"]').addClass('chosen');
+                                    me.settings.$datetime_con.removeClass('hide');
                                     setTimeout(function() {
                                         datetime_con_func.activeAndSetStarttime_date(me);
                                     }, 300);
