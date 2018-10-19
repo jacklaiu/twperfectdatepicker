@@ -99,23 +99,19 @@
                 '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
             '</div>',
         '</div>',
-
         /*'<div class="footer">',
         	'<a href="javascript:;" class="word-cell"><span class="word">取消</span></a>',
         	'<a href="javascript:;" class="word-cell"><span class="word">确定</span></a>',
         '</div>',*/
-        
     '</div>',
-
-                            '<div class="timepicker-part part hide">',
-                            //fill on event
-                            '</div>',
-                            '<div class="datepicker-part part hide">',
-                            //fill on event
-                            '</div>',
-                        '</div>',
+        '<div class="timepicker-part part hide">',
+        //fill on event
+        '</div>',
+        '<div class="datepicker-part part hide">',
+        //fill on event
+        '</div>',
+    '</div>',
                 //*****************************************************************************************************************************************************************
-
                         '<div class="timezone-part part hide">',
                             '<div class="timezone-item remove-timezone"><div class="word-con"><span class="word">取消</span></div></div>',
                         	'<div class="timezone-item" timezone="GMT+1200"><div class="word-con"><span class="word">GMT+12:00</span></div></div>',
@@ -651,6 +647,7 @@
                 starttime ? timeMsg['starttime'] = starttime: void(0);
                 enddate ? timeMsg['enddate'] = enddate: void(0);
                 endtime ? timeMsg['endtime'] = endtime: void(0);
+
                 var pre_dp_startdate = moment(me.settings.$datepicker.attr('startdate')).subtract(1, 'month');
                 debugger;
                 func._refreshDatepicker(me, {year: pre_dp_startdate.year(), month: pre_dp_startdate.month()+1, cb: cb, isAfterClickingBtnNextPre: true, timeMsg: timeMsg}/*pre_dp_startdate.year(), pre_dp_startdate.month()+1, null, cb, true, timeMsg*/);
@@ -1103,7 +1100,7 @@
 		 */
 		bindEvent: function(me) {
 			var func = this;
-			me.settings.$datetime_con.on('click', '.datetime-result-con .date-con:not(".active"), .datetime-result-con .time-con:not(".active")', function() {
+			me.settings.$datetime_con.on('click', '.datetime-result-con .date-con, .datetime-result-con .time-con:not(".active")', function() {
 			    debugger;
 			    var $this = $(this), isStarttime = $this.parents('.starttime-con').length > 0, isDateCon = $this.hasClass('date-con'), isTimeCon = $this.hasClass('time-con');
                 var dateOrtime = $this.find('span.word').html();
