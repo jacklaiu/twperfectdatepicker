@@ -173,13 +173,15 @@
 				'</div>'
 			].join('');
         },
-	    getTimepickerHtml_hours: function(starthms) {
+	    getTimepickerHtml_hours: function(me, starthms) {
 	        debugger;
-	        var s_h;
+	        var s_h, s_d;
 	        if(starthms && starthms.length === 19) {
-	            s_h = moment(starthms).format('H')
+	            s_h = moment(starthms).format('H');
+	            s_d = moment(starthms).format('YYYY-MM-DD');
             }else {
                 s_h = starthms ? moment(moment().format('YYYY-MM-DD') + ' ' + starthms).format('H'): void(0);
+                s_d = moment().format('YYYY-MM-DD');
             }
 	        var $html = $([
 	            '<div><div class="row">',
@@ -221,15 +223,21 @@
 	        if(s_h) {
                 var $tus = $html.find('.time-unit');
                 s_h = parseInt(s_h);
+                var e_d = moment(datetime_con_func.getEndtime(me)).format('YYYY-MM-DD');
                 for(var i = 0, leni = $tus.length; i < leni; i++) {
                     var $tu = $tus.eq(i);
                     var h = parseInt(moment(moment().format('YYYY-MM-DD') + ' ' + $tu.html()).format('H'));
                     if(h > s_h) {
                         continue;
                     }else if(h === s_h){
-                        $tu.html(starthms.length >= 19 ? moment(starthms).format('HH:mm'): starthms).css('color', '#6683DF');
+                        $tu.html(starthms.length >= 19 ? moment(starthms).format('HH:mm'): starthms);
+                        !(s_d && s_d < e_d) && $tu.css('color', '#6683DF');
                         continue;
                     }
+                    if(s_d && s_d < e_d) {
+                        continue;
+                    }
+
                     $tu.addClass('lt-starthms');
                 }
             }
@@ -237,11 +245,13 @@
         },
         getTimepickerHtml_mins: function(me, hour, starthms) {
 	        debugger;
-            var s_hhmm;
+            var s_hhmm, s_d;
             if(starthms && starthms.length === 19) {
-                s_hhmm = moment(starthms).format('HH:mm')
+                s_hhmm = moment(starthms).format('HH:mm');
+                s_d = moment(starthms).format('YYYY-MM-DD');
             }else {
                 s_hhmm = starthms ? moment(moment().format('YYYY-MM-DD') + ' ' + starthms).format('HH:mm'): void(0);
+                s_d = moment().format('YYYY-MM-DD');
             }
             var isMinuteDuration_30 = me.settings.minuteDuration === 30;
 
@@ -273,6 +283,7 @@
                 ].join(''));
 
             if(s_hhmm) {
+                var e_d = moment(datetime_con_func.getEndtime(me)).format('YYYY-MM-DD');
                 var $tus = $html.find('.time-unit');
                 for(var i = 0, leni = $tus.length; i < leni; i++) {
                     var $tu = $tus.eq(i);
@@ -280,6 +291,11 @@
                     if(hhmm > s_hhmm) {
                         continue;
                     }
+                    if(s_d && s_d < e_d) {
+                        $tu.removeAttr('style');
+                        continue;
+                    }
+
                     $tu.addClass('lt-starthms');
                 }
             }
@@ -1447,7 +1463,7 @@
                 return (function() {
                     return new Promise(function(resolve) {
                         debugger;
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours()).removeClass('hide').fadeIn(50, 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, )).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                             var $this = $(this);
                             if($this.hasClass('lt-starthms')) {
@@ -1605,7 +1621,7 @@
                     return new Promise(function(resolve) {
                         debugger;
                         var starttime = datetime_con_func.getStarttime(me);
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starttime)).removeClass('hide').fadeIn(50, 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, starttime)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                             var $this = $(this);
                             if($this.hasClass('lt-starthms')) {
@@ -1695,7 +1711,7 @@
                 return func.hideDatePicker(me);
             }).then(function() {
                 me.settings.$datetime_con.removeClass('hide');
-                me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starttime)).removeClass('hide').fadeIn(50, 'swing');
+                me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, starttime)).removeClass('hide').fadeIn(50, 'swing');
                 me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                     
                     var $this = $(this);
@@ -1747,7 +1763,7 @@
                 func.hideDatePicker(me).then(function() {
                     me.settings.$extra_container.show().fadeIn(50, 'swing', function () {
                         me.settings.$datetime_con.removeClass('hide');
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starttime)).removeClass('hide').fadeIn(50, 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, starttime)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                             var $this = $(this);
                             if($this.hasClass('lt-starthms')) {
@@ -1786,7 +1802,7 @@
                     me.settings.$extra_container.show().fadeIn(50, 'swing', function () {
 
                         me.settings.$datetime_con.removeClass('hide');
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours()).removeClass('hide').fadeIn(50, 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, )).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function() {
                             
                             var $this = $(this);
@@ -1803,7 +1819,7 @@
                                 datetime_con_func.activeAndSetStarttime_time(me, starthms);
 
                                 me.settings.$datetime_con.removeClass('hide');
-                                me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(starthms)).removeClass('hide').fadeIn(50, 'swing');
+                                me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, starthms)).removeClass('hide').fadeIn(50, 'swing');
 
                                 setTimeout(function() {
                                     datetime_con_func.activeAndSetEndtime_time(me);
