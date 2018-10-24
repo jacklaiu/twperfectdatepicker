@@ -640,11 +640,15 @@
                 });
             });
             me.settings.$datepicker.find('a.choose_endtime_onenddate').off('click').on('click', function() {
+                debugger;
                 me.settings.$datepicker.find(".show-month-con .choose_enddate").remove();
                 var $chosen_d = me.settings.$datepicker.find('.date-col.date.chosen');
                 enddate = $chosen_d.addClass('enddate').attr('date');
                 datetime_con_func.activeAndSetEndtime_time(me);
-                Process.getHms(me, startdate === enddate ? starttime : '').then(function(hms) {
+                var _startdate = datetime_con_func.getStarttime_date(me);
+                var _enddate = datetime_con_func.getEndtime_date(me);
+                Process.getHms(me,
+                    _startdate === _enddate ? moment(datetime_con_func.getStarttime(me)).format('HH:mm') : '').then(function(hms) {
                     endtime = hms;
                     datetime_con_func.activeAndSetEndtime_time(me, hms);
                     var ret = {};
@@ -1463,7 +1467,7 @@
                 return (function() {
                     return new Promise(function(resolve) {
                         debugger;
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, )).removeClass('hide').fadeIn(50, 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                             var $this = $(this);
                             if($this.hasClass('lt-starthms')) {
@@ -1802,7 +1806,7 @@
                     me.settings.$extra_container.show().fadeIn(50, 'swing', function () {
 
                         me.settings.$datetime_con.removeClass('hide');
-                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, )).removeClass('hide').fadeIn(50, 'swing');
+                        me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function() {
                             
                             var $this = $(this);
