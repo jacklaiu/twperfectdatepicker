@@ -174,7 +174,7 @@
 			].join('');
         },
 	    getTimepickerHtml_hours: function(me, starthms) {
-	        debugger;
+	        
 	        var s_h, s_d;
 	        if(starthms && starthms.length === 19) {
 	            s_h = moment(starthms).format('H');
@@ -244,7 +244,7 @@
 	        return $html[0].outerHTML;
         },
         getTimepickerHtml_mins: function(me, hour, starthms) {
-	        debugger;
+	        
             var s_hhmm, s_d;
             if(starthms && starthms.length === 19) {
                 s_hhmm = moment(starthms).format('HH:mm');
@@ -395,7 +395,7 @@
                 '</div>',
 
                 '<div class="footer">',(function() {
-                    debugger;
+                    
                     var starthide = Status.isChoosing_starttime_date(me) ? '' : 'hide';
                     var endhide = Status.isChoosing_endttime_date(me) ? '' : 'hide';
 
@@ -436,7 +436,7 @@
 	var datetime_con_func = {
 
 	    refresh: function(me, starttime, endtime) {
-	        debugger;
+	        
 	        var $me = me.settings.$me, _starttime = starttime ? starttime : $me.attr('starttime'), _endtime = endtime ? endtime : $me.attr('endtime');
 	        datetime_con_func.blurAll(me);
 	        datetime_con_func.setStarttime_date(me, moment(_starttime).format('YYYY-MM-DD'));
@@ -541,7 +541,7 @@
             if(isInit){
                 var datepickerHtml = template.getDatepickerHtml(me, targetDate, chosenDate);
                 me.settings.$datepicker.attr('startdate', moment(targetDate).format('YYYY-MM-01')).append(datepickerHtml);
-                debugger;
+                
                 LifeCycle.afterDatepickerFinishRendering(me);
             }else {
                 var $date_con = me.settings.$datepicker.find('.body.date-con');
@@ -590,7 +590,7 @@
                 me.settings.$datepicker.attr('startdate', moment(targetDate).format('YYYY-MM-01'));
                 me.settings.$datepicker.find('.show-month-con span.year').html((year ? year : moment(targetDate).format('YYYY')) + '年');
                 me.settings.$datepicker.find('.show-month-con span.month').html((month ? month : moment(targetDate).format('M')) + '月');
-                debugger;
+                
                 LifeCycle.afterDatepickerFinishRendering(me);
 
             }
@@ -616,7 +616,7 @@
                 endtime = timeMsg['endtime'];
             }
             me.settings.$datepicker.find('a.choose_starttime_onstartdate').off('click').on('click', function() {
-                debugger;
+                
                 var isSingleDateChooseMode = me.settings.$datepicker.find('.show-month-con .choose_enddate:not(".hide"), .show-month-con .choose_startdate:not(".hide")').length > 0;
                 var $chosen_d = me.settings.$datepicker.find('.date-col.date.chosen');
                 startdate = $chosen_d.addClass('startdate').attr('date');
@@ -640,7 +640,7 @@
                 });
             });
             me.settings.$datepicker.find('a.choose_endtime_onenddate').off('click').on('click', function() {
-                debugger;
+                
                 me.settings.$datepicker.find(".show-month-con .choose_enddate").remove();
                 var $chosen_d = me.settings.$datepicker.find('.date-col.date.chosen');
                 enddate = $chosen_d.addClass('enddate').attr('date');
@@ -669,7 +669,7 @@
                 endtime ? timeMsg['endtime'] = endtime: void(0);
 
                 var pre_dp_startdate = moment(me.settings.$datepicker.attr('startdate')).subtract(1, 'month');
-                debugger;
+                
                 func._refreshDatepicker(me, {year: pre_dp_startdate.year(), month: pre_dp_startdate.month()+1, cb: cb, isAfterClickingBtnNextPre: true, timeMsg: timeMsg}/*pre_dp_startdate.year(), pre_dp_startdate.month()+1, null, cb, true, timeMsg*/);
             });
             me.settings.$datepicker.find('.next-btn').off('click').on('click', function() {
@@ -685,7 +685,7 @@
 
 
             me.settings.$datepicker.find('.date-col.date').off('click').on('click', function() {
-
+                debugger;
                 var $this = $(this);
 
                 me.settings.$datepicker.find('.mark').each(function () {
@@ -698,7 +698,7 @@
                 var isSingleDateChooseMode = me.settings.$datepicker.find('.show-month-con .choose_enddate:not(".hide"), .show-month-con .choose_startdate:not(".hide")').length > 0;
                 var isSingleDateChooseModeAndChooseStartDate = me.settings.$datepicker.find('.show-month-con .choose_startdate:not(".hide")').length > 0;
                 var isSingleDateChooseModeAndChooseEndDate = me.settings.$datepicker.find('.show-month-con .choose_enddate:not(".hide")').length > 0;
-                debugger;
+                
                 if(isSingleDateChooseMode) {
                     if(isSingleDateChooseModeAndChooseStartDate) {
                         var sd = $this.attr('date');
@@ -729,8 +729,9 @@
                 datetime_con_func.blurAll(me);
                 if(isStarttime && isDate) {
                     datetime_con_func.activeAndSetStarttime_date(me, date);
-                    !isSingleDateChooseMode && datetime_con_func.setEndtime_date(me, date);
+                    date > datetime_con_func.getEndtime_date(me) && !isSingleDateChooseMode && datetime_con_func.setEndtime_date(me, date);
                 }else if(!isStarttime && isDate) {
+                    debugger;
                     datetime_con_func.activeAndSetEndtime_date(me, date);
                 }
 
@@ -741,7 +742,7 @@
                     me.settings.$datepicker.find('.date-col').removeClass('startdate');
                     $this.addClass('startdate');
                 }
-                debugger;
+                
                 if(!isSingleDateChooseMode && Status.isChoosing_endttime_date(me)) {
                     var _startdate = me.settings.$datepicker.find('.date-col.date.startdate').addClass('s2e').attr('date');
                     var _endate = $(this).attr('date');
@@ -778,7 +779,7 @@
             });
             cb && me.settings.$datepicker.find('.footer .confirm, .footer .cancel').off('click').on('click', function(e) {
                 if($(e.target).hasClass('confirm')) {
-                    debugger;
+                    
                     var ret = {};
                     //单独选一个日期的情况
                     //ret.date = me.settings.$datepicker.find('.date-col.date.chosen').attr('date');
@@ -1023,7 +1024,7 @@
             });
         },
         hideTimePicker: function(me) {
-	        debugger;
+	        
             return new Promise(function(resolve) {
 
                 me.settings.$datetime_con.addClass('hide');
@@ -1040,7 +1041,7 @@
 	        //     var $m = $marks.eq(i);
 	        //     $m.removeClass('mark');
             // }
-            debugger;
+            
             func.hideTimezone(me);
             func.hideNoticeAdvance(me);
             func.hideNoticeAdvanceCustom(me);
@@ -1085,7 +1086,7 @@
             var sec = durMills/1000, min = sec/60, hour = min/60, day = hour/24;
             
             var $html = $(template.getMainHtml(me, starttime, endtime));
-            debugger;
+            
 			me.settings.$me = $html;
 
 			me.settings.$main_container = $html.find('.main-container');
@@ -1121,7 +1122,7 @@
 		bindEvent: function(me) {
 			var func = this;
 			me.settings.$datetime_con.on('click', '.datetime-result-con .date-con, .datetime-result-con .time-con:not(".active")', function() {
-			    debugger;
+			    
 			    var $this = $(this), isStarttime = $this.parents('.starttime-con').length > 0, isDateCon = $this.hasClass('date-con'), isTimeCon = $this.hasClass('time-con');
                 var dateOrtime = $this.find('span.word').html();
                 me.settings.$datepicker.find('.startdate').removeClass('startdate');
@@ -1166,7 +1167,7 @@
                 // });
             });*/
             /*me.settings.$datepicker.on('click', '.month-dates-con:not(".hide") .date-col.date', function() {
-                debugger;
+                
                 var isSingleDateChooseMode = me.settings.$datepicker.find('.show-month-con .choose_enddate:not(".hide"), .show-month-con .choose_startdate:not(".hide")').length > 0;
                 if(isSingleDateChooseMode) return;
                 var $this = $(this);
@@ -1187,7 +1188,7 @@
 			    var $this = $(e.target);
 			    var $e1 = $this.parents('.twperfectdatepicker');
 			    var $e2 = $this.parents('.twperfectdatepicker-con');
-			    debugger;
+			    
 			    if($e1.length !== 0 ||
                     $this.hasClass('twperfectdatepicker-con') ||
                     $this.hasClass('time-unit') ||
@@ -1203,7 +1204,7 @@
 			//main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 			me.$ele.on('click', function(e) {
 			    var $this = $(this);
-                debugger;
+                
 				if(me.settings.$me.hasClass('hide')) {
 					func.beforeShow(me);
                     me.settings.$main_part.show().removeClass('hide');
@@ -1228,11 +1229,11 @@
 
 			me.settings.$main_part.on('click', '.lf.se', function() {
                 var ret = {}, $this = $(this);
-                debugger;
+                
                 datetime_con_func.refresh(me);
 
                 Process.selectDate(me, function(o) {
-                    debugger;
+                    
                     ret = o;
                     func.hideDatePicker(me).then(function(o) {
                         
@@ -1335,11 +1336,11 @@
                 // me.$ele.find('div.con.origin').removeClass('hide');
             });
 
-            debugger;
+            
             me.settings.$main_container.on('click', '.extra-btn-con .row.timezone', function() {
-                debugger;
+                
                 Process.chooseTimezone(me, function(timezone, timezonename) {
-                    debugger;
+                    
                     func.refreshTimezone(me, timezone, timezonename);
                 });
             });
@@ -1370,7 +1371,7 @@
 	var Process = {
 
 	    chooseStarttime_date: function(me, date) {
-	        debugger;
+	        
 	        //如果timepicker还在，则empty它
             var isTimepickerEmpty = me.settings.$timepicker.find('div').length === 0;
             if(!isTimepickerEmpty) {
@@ -1408,7 +1409,7 @@
                 me.settings.$datepicker.find('a.choose_endtime_onenddate').addClass('hide');
 
                 me.settings.$datepicker.find('a.choose').off('click').on('click', function() {
-                    debugger;
+                    
                     var isNowChooseStartDate = me.settings.$datetime_con.find('.starttime-con .date-con').hasClass('active');
                     var isNowChooseEndDate = me.settings.$datetime_con.find('.endtime-con .date-con').hasClass('active');
                     if(isNowChooseStartDate) {
@@ -1431,7 +1432,7 @@
             });
         },
         chooseStarttime_time: function(me, time) {
-            debugger;
+            
             var isDatepickerEmpty = me.settings.$datepicker.find('div').length === 0;
             if(isDatepickerEmpty) return;
             datetime_con_func.activeAndSetStarttime_time(me, time);
@@ -1448,7 +1449,7 @@
                 });
             }());
             step.then(function(ret) {
-                debugger;
+                
                 //如果在选择单日，则先还原
                 var isNowChooseStartDate = me.settings.$datetime_con.find('.starttime-con .date-con').hasClass('active');
                 var isNowChooseEndDate = me.settings.$datetime_con.find('.endtime-con .date-con').hasClass('active');
@@ -1466,7 +1467,7 @@
 
                 return (function() {
                     return new Promise(function(resolve) {
-                        debugger;
+                        
                         me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
                             var $this = $(this);
@@ -1479,7 +1480,7 @@
                             me.settings.$timepicker.empty().append(template.getTimepickerHtml_mins(me, $this.attr('hour')))
                                 .find('.time-min-unit').off('click').on('click', function () {
                                 var $this = $(this);
-                                debugger;
+                                
                                 if($this.hasClass('lt-starthms')) {
                                     alert('结束时间应大于开始时间');
                                     return;
@@ -1512,7 +1513,7 @@
                     });
                 }());
             }).then(function(hms) {
-                debugger;
+                
                 isDatepickerHide ? me.settings.$timepicker.removeClass('hide'): me.settings.$datepicker.removeClass('hide');
                 var starttime_date = datetime_con_func.getStarttime_date(me);
                 var endtime = datetime_con_func.getEndtime(me);
@@ -1526,7 +1527,7 @@
             });
         },
         chooseEndtime_date: function(me, date) {
-	        debugger;
+	        
             //如果timepicker还在，则empty它
             var isTimepickerEmpty = me.settings.$timepicker.find('div').length === 0;
             if(!isTimepickerEmpty) {
@@ -1542,7 +1543,7 @@
             step.then(function(ret) {
                 return func.showDatePicker(me);
             }).then(function() {
-                debugger;
+                
                 //datepicker不可选日置灰处理
                 me.settings.enable_datepicker_showUnselectableStyle = true;
                 var starttime_date = datetime_con_func.getStarttime_date(me);
@@ -1587,7 +1588,7 @@
             });
         },
         chooseEndtime_time: function(me, time) {
-	        debugger;
+	        
             var isDatepickerEmpty = me.settings.$datepicker.find('div').length === 0;
             if(isDatepickerEmpty) return;
             datetime_con_func.activeAndSetEndtime_time(me, time);
@@ -1604,7 +1605,7 @@
                 });
             }());
             step.then(function(ret) {
-                debugger;
+                
                 //如果在选择单日，则先还原
                 var isNowChooseStartDate = me.settings.$datetime_con.find('.starttime-con .date-con').hasClass('active');
                 var isNowChooseEndDate = me.settings.$datetime_con.find('.endtime-con .date-con').hasClass('active');
@@ -1623,7 +1624,7 @@
 
                 return (function() {
                     return new Promise(function(resolve) {
-                        debugger;
+                        
                         var starttime = datetime_con_func.getStarttime(me);
                         me.settings.$timepicker.empty().append(template.getTimepickerHtml_hours(me, starttime)).removeClass('hide').fadeIn(50, 'swing');
                         me.settings.$timepicker.find('.time-hour-unit').on('click', function () {
@@ -1638,7 +1639,7 @@
                                 .find('.time-min-unit').off('click').on('click', function () {
 
                                 var $this = $(this);
-                                debugger;
+                                
                                 if($this.hasClass('lt-starthms')) {
                                     alert('结束时间应大于开始时间');
                                     return;
@@ -1670,7 +1671,7 @@
                     });
                 }());
             }).then(function(hms) {
-                debugger;
+                
                 isDatepickerHide ? me.settings.$timepicker.removeClass('hide'): me.settings.$datepicker.removeClass('hide');
                 datetime_con_func.activeAndSetEndtime_time(me, hms);
                 setTimeout(function() {
@@ -1740,7 +1741,7 @@
             func.hideMainPart(me).then(function() {
                 return func.showDatePicker(me);
             }).then(function() {
-                debugger;
+                
                 var date = moment(me.settings.$me.attr('starttime')).format('YYYY-MM-DD');
                 func._refreshDatepicker(me, {chosenDate: date, cb: function (ret) {
                         cb ? cb(ret): void(0);
@@ -1869,7 +1870,7 @@
             me.settings.$datepicker.find('.choose_endtime_onenddate').addClass('hide');
         },
         afterDatepickerFinishRendering: function (me) {
-	        debugger;
+	        
             //不可选中的日的元素，置灰
 	        if(me.settings.enable_datepicker_showUnselectableStyle) {
 	            var isStartDateActive = me.settings.$datetime_con.find('.starttime-con .date-con.active').length > 0;
@@ -2042,7 +2043,7 @@
             this.settings.$me.remove();
         },
         hide: function() {
-            debugger;
+            
         	func.beforeHide(me);
             func.hide(me);
         }
