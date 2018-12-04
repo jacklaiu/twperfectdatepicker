@@ -72,45 +72,40 @@
                             '<div class="con month-con"></div>',
                             '<div class="con date-con"></div>',
                         '</div>',
+                        //*****************************************************************************************************************************************************************
+                        '<div class="datetime-con hide">',
 
-                //*****************************************************************************************************************************************************************
-'<div class="datetime-con hide">',
-
-    '<div class="datetime-result-con">',
-        '<div class="starttime-con se-con">',
-            '<div class="title-con con">',
-                '<div class="word-cell cell"><span class="word">开始时间</span></div>',
-            '</div>',
-            '<div class="date-con con">',
-                '<div class="word-cell cell"><span class="word">2018-10-01</span></div>',
-            '</div>',
-            '<div class="time-con con">',
-                '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
-            '</div>',
-        '</div>',
-        '<div class="endtime-con se-con">',
-            '<div class="title-con con">',
-                '<div class="word-cell cell"><span class="word">结束时间</span></div>',
-            '</div>',
-            '<div class="date-con con">',
-                '<div class="word-cell cell"><span class="word">2018-10-01</span></div>',
-            '</div>',
-            '<div class="time-con con">',
-                '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
-            '</div>',
-        '</div>',
-        /*'<div class="footer">',
-        	'<a href="javascript:;" class="word-cell"><span class="word">取消</span></a>',
-        	'<a href="javascript:;" class="word-cell"><span class="word">确定</span></a>',
-        '</div>',*/
-    '</div>',
-        '<div class="timepicker-part part hide">',
-        //fill on event
-        '</div>',
-        '<div class="datepicker-part part hide">',
-        //fill on event
-        '</div>',
-    '</div>',
+                            '<div class="datetime-result-con">',
+                                '<div class="starttime-con se-con">',
+                                    '<div class="title-con con">',
+                                        '<div class="word-cell cell"><span class="word">开始时间</span></div>',
+                                    '</div>',
+                                    '<div class="date-con con">',
+                                        '<div class="word-cell cell"><span class="word">2018-10-01</span></div>',
+                                    '</div>',
+                                    '<div class="time-con con">',
+                                        '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
+                                    '</div>',
+                                '</div>',
+                                '<div class="endtime-con se-con">',
+                                    '<div class="title-con con">',
+                                        '<div class="word-cell cell"><span class="word">结束时间</span></div>',
+                                    '</div>',
+                                    '<div class="date-con con">',
+                                        '<div class="word-cell cell"><span class="word">2018-10-01</span></div>',
+                                    '</div>',
+                                    '<div class="time-con con">',
+                                        '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
+                                    '</div>',
+                                '</div>',
+                                '</div>',
+                                '<div class="timepicker-part part hide">',
+                                //fill on event
+                                '</div>',
+                                '<div class="datepicker-part part hide">',
+                                //fill on event
+                                '</div>',
+                            '</div>',
                 //*****************************************************************************************************************************************************************
                         '<div class="timezone-part part hide">',
                             '<div class="timezone-item remove-timezone"><div class="word-con"><span class="word">取消</span></div></div>',
@@ -1204,7 +1199,6 @@
 			//main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 			me.$ele.on('click', function(e) {
 			    var $this = $(this);
-                
 				if(me.settings.$me.hasClass('hide')) {
 					func.beforeShow(me);
                     me.settings.$main_part.show().removeClass('hide');
@@ -1226,7 +1220,6 @@
                     });
 				}
 			});
-
 			me.settings.$main_part.on('click', '.lf.se', function() {
                 var ret = {}, $this = $(this);
                 
