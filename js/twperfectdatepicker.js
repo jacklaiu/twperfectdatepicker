@@ -7,7 +7,7 @@
             var showDur = 1;
             var showDurName = '小时';
 			return [
-				'<div id="',me.settings.id,'" class="twperfectdatepicker hide" starttime="',moment(starttime).format('YYYY-MM-DD HH:mm:00'),'" endtime="',moment(endtime).format('YYYY-MM-DD HH:mm:00'),'" class="hide" style="display: none;">',
+				'<div id="',me.settings.id,'" class="twperfectdatepicker hide" starttime="',starttime,'" endtime="',endtime,'" class="hide" style="display: none;">',
 					'<div class="main-container">',
                         '<div class="part-container">',
                             '<div class="main-part part">',
@@ -62,7 +62,7 @@
 		                        '<div class="cell word-cell"><span class="word"><span class="title">设置时区</span><span class="showtimezone"></span></div>',
 		                    '</div>',
                         '</div>',
-                        '<div class="footer"><a href="javascript:;" class="me_cancel">取消</a><a href="javascript:;" class="me_confirm">确定</a></div>',
+                        /*'<div class="footer"><a href="javascript:;" class="me_cancel">取消</a><a href="javascript:;" class="me_confirm">确定</a></div>',*/
 					'</div>',
 					'<div class="extra-container">',
                         '<div class="simple-datepicker-part part hide">',
@@ -72,40 +72,41 @@
                             '<div class="con month-con"></div>',
                             '<div class="con date-con"></div>',
                         '</div>',
-                        //*****************************************************************************************************************************************************************
-                        '<div class="datetime-con hide">',
 
-                            '<div class="datetime-result-con">',
-                                '<div class="starttime-con se-con">',
-                                    '<div class="title-con con">',
-                                        '<div class="word-cell cell"><span class="word">开始时间</span></div>',
-                                    '</div>',
-                                    '<div class="date-con con">',
-                                        '<div class="word-cell cell"><span class="word">2018-10-01</span></div>',
-                                    '</div>',
-                                    '<div class="time-con con">',
-                                        '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
-                                    '</div>',
-                                '</div>',
-                                '<div class="endtime-con se-con">',
-                                    '<div class="title-con con">',
-                                        '<div class="word-cell cell"><span class="word">结束时间</span></div>',
-                                    '</div>',
-                                    '<div class="date-con con">',
-                                        '<div class="word-cell cell"><span class="word">2018-10-01</span></div>',
-                                    '</div>',
-                                    '<div class="time-con con">',
-                                        '<div class="word-cell cell"><span class="word">10:50:00</span></div>',
-                                    '</div>',
-                                '</div>',
-                                '</div>',
-                                '<div class="timepicker-part part hide">',
-                                //fill on event
-                                '</div>',
-                                '<div class="datepicker-part part hide">',
-                                //fill on event
-                                '</div>',
-                            '</div>',
+                //*****************************************************************************************************************************************************************
+'<div class="datetime-con hide">',
+
+    '<div class="datetime-result-con">',
+        '<div class="starttime-con se-con">',
+            '<div class="title-con con">',
+                '<div class="word-cell cell"><span class="word">开始时间</span></div>',
+            '</div>',
+            '<div class="date-con con">',
+                '<div class="word-cell cell"><span class="word">',moment(starttime).format("YYYY-MM-DD"),'</span></div>',
+            '</div>',
+            '<div class="time-con con">',
+                '<div class="word-cell cell"><span class="word">',moment(starttime).format("HH:mm:00"),'</span></div>',
+            '</div>',
+        '</div>',
+        '<div class="endtime-con se-con">',
+            '<div class="title-con con">',
+                '<div class="word-cell cell"><span class="word">结束时间</span></div>',
+            '</div>',
+            '<div class="date-con con">',
+                '<div class="word-cell cell"><span class="word">',moment(endtime).format("YYYY-MM-DD"),'</span></div>',
+            '</div>',
+            '<div class="time-con con">',
+                '<div class="word-cell cell"><span class="word">',moment(endtime).format("HH:mm:00"),'</span></div>',
+            '</div>',
+        '</div>',
+    '</div>',
+        '<div class="timepicker-part part hide">',
+        //fill on event
+        '</div>',
+        '<div class="datepicker-part part hide">',
+        //fill on event
+        '</div>',
+    '</div>',
                 //*****************************************************************************************************************************************************************
                         '<div class="timezone-part part hide">',
                             '<div class="timezone-item remove-timezone"><div class="word-con"><span class="word">取消</span></div></div>',
@@ -390,7 +391,7 @@
                 '</div>',
 
                 '<div class="footer">',(function() {
-                    
+
                     var starthide = Status.isChoosing_starttime_date(me) ? '' : 'hide';
                     var endhide = Status.isChoosing_endttime_date(me) ? '' : 'hide';
 
@@ -402,24 +403,24 @@
                     var has_choose_starttime_onstartdate = me.settings.$datepicker.find('.choose_starttime_onstartdate').length > 0;
                     var has_choose_endtime_onenddate = me.settings.$datepicker.find('.choose_endtime_onenddate').length > 0;
 
-                    var s1 = !isSingleDateChooseMode && isStartDateActive ?
-                        '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate '+starthide+'">继续选择开始时间</a>':
-                        isSingleDateChooseMode && isStartDateActive ?
-                            '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate hide ">继续选择开始时间</a>' :
-                            '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate hide ">继续选择开始时间</a>';
+                    // var s1 = !isSingleDateChooseMode && isStartDateActive ?
+                    //     '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate '+starthide+'">继续选择开始时间</a>':
+                    //     isSingleDateChooseMode && isStartDateActive ?
+                    //         '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate hide ">继续选择开始时间</a>' :
+                    //         '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_starttime_onstartdate hide ">继续选择开始时间</a>';
 
-                    var s2 = !isSingleDateChooseMode && isEndDateActive ?
-                        '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate '+endhide+'">继续选择结束时间</a>':
-                        isSingleDateChooseMode && isEndDateActive ?
-                            '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate hide ">继续选择结束时间</a>' :
-                            '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate hide ">继续选择结束时间</a>';
+                    // var s2 = !isSingleDateChooseMode && isEndDateActive ?
+                    //     '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate '+endhide+'">继续选择结束时间</a>':
+                    //     isSingleDateChooseMode && isEndDateActive ?
+                    //         '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate hide ">继续选择结束时间</a>' :
+                    //         '<a href="javascript:;" mills="'+Util.currentMills()+'" class="choose_endtime_onenddate hide ">继续选择结束时间</a>';
 
                     has_choose_starttime_onstartdate && me.settings.$datepicker.find('.choose_starttime_onstartdate').addClass('hide');
                     has_choose_endtime_onenddate && me.settings.$datetime_con.find('.endtime-con .date-con').addClass('hide');
 
-                    return (!has_choose_starttime_onstartdate ? s1:'')+(!has_choose_endtime_onenddate ? s2 : '');
+                    return (!has_choose_starttime_onstartdate ? '':'')+(!has_choose_endtime_onenddate ? '' : '');
 
-                }()),'<a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="confirm">确定</a><a href="javascript:;" class="choose hide">选择</a></div>',
+                }()),'<a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="confirm">确认</a></div>',
             ].join('');
         },
         
@@ -623,7 +624,7 @@
 
                     !isSingleDateChooseMode && me.settings.$datepicker.find('.footer').find('.choose_endtime_onenddate').removeClass('hide');
 
-                    me.settings.$datepicker.find('.footer').find('.cancel').addClass('hide').parent().find('.confirm').addClass('hide');
+                    // me.settings.$datepicker.find('.footer').find('.cancel').addClass('hide').parent().find('.confirm').addClass('hide');
                     me.settings.$datepicker.find('.tips-cell.choose_startdate').remove();
 
                     me.settings.$datepicker.removeClass('hide').fadeIn(50, 'swing');
@@ -774,22 +775,24 @@
             });
             cb && me.settings.$datepicker.find('.footer .confirm, .footer .cancel').off('click').on('click', function(e) {
                 if($(e.target).hasClass('confirm')) {
-                    
-                    var ret = {};
-                    //单独选一个日期的情况
-                    //ret.date = me.settings.$datepicker.find('.date-col.date.chosen').attr('date');
-                    ret.starttime = datetime_con_func.getStarttime(me);
-                    ret.endtime = datetime_con_func.getEndtime(me);
-                    LifeCycle.beforeDatepickerReturn(me);
-                    cb ? cb(ret) : void(0);
+                    func.confirmForNexttime(me);
+                    // var ret = {};
+                    // //单独选一个日期的情况
+                    // //ret.date = me.settings.$datepicker.find('.date-col.date.chosen').attr('date');
+                    // ret.starttime = datetime_con_func.getStarttime(me);
+                    // ret.endtime = datetime_con_func.getEndtime(me);
+                    // LifeCycle.beforeDatepickerReturn(me);
+                    // cb ? cb(ret) : void(0);
                 }else {
-                    LifeCycle.beforeDatepickerReturn(me);
-                    cb ? cb() : void(0);
+                    func.cancelForNexttime(me);
+                    // LifeCycle.beforeDatepickerReturn(me);
+                    // cb ? cb() : void(0);
                 }
             });
             cb && me.settings.$datetime_con.on('click', '.datetime-result-con a.confirm', function () {
-                LifeCycle.beforeDatepickerReturn(me);
-                cb ? cb() : void(0);
+                func.confirmForNexttime(me);
+                // LifeCycle.beforeDatepickerReturn(me);
+                // cb ? cb() : void(0);
             });
         },
 
@@ -1068,13 +1071,39 @@
 	        calls.push(func.hideDatePicker(me));
 	        Promise.all(calls);
         },
-
+        confirmForNexttime: function(me) {
+	        func.confirm(me);
+	        me.main_container_hold = false;
+        },
+        confirm: function(me) {
+            func.beforeHide(me);
+            var $el = me.settings.$me;
+            // var starttime = $el.attr('starttime') ? $el.attr('starttime') : moment().add(30, 'minutes').format('YYYY-MM-DD HH:mm:ss');
+            // var endtime = $el.attr('endtime') ? $el.attr('endtime') : moment().add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss');
+            var $s_el = me.settings.$datetime_con.find('.datetime-result-con .starttime-con');
+            var $e_el = me.settings.$datetime_con.find('.datetime-result-con .endtime-con');
+            var starttime = $s_el.find('.date-con span.word').text() + " " + $s_el.find('.time-con span.word').text() + ":00";
+            var endtime = $e_el.find('.date-con span.word').text() + " " + $e_el.find('.time-con span.word').text() + ":00";
+            var timezone = $el.attr('timezone') ? $el.attr('timezone'): '';
+            me.settings.onConfirm({starttime: starttime, endtime: endtime, timezone: timezone});
+            func.hide(me);
+            me.$ele.attr('starttime', starttime).attr('endtime', endtime);
+        },
+        cancelForNexttime: function(me) {
+	        func.cancel(me);
+	        me.main_container_hold = false;
+        },
+        cancel: function(me) {
+            func.beforeHide(me);
+            func.reset(me);
+            func.hide(me);
+        },
 		/**
 		 * 初始化
 		 * @param me
 		 */
 		init: function(me) {
-
+		    debugger;
 			var starttime = me.settings.starttime;
 			var endtime = me.settings.endtime;
 			var durMills = parseInt(moment(endtime).format('x')) - parseInt(moment(starttime).format('x'));
@@ -1140,42 +1169,6 @@
                 }
             });
 			//datetime-con**************************************************************
-            /*me.settings.$datetime_con.on('click', '.se-con .date-con,.se-con .time-con', function() {
-                var $this = $(this), isStarttime = $this.parents('.starttime-con').length > 0, isDate = $this.hasClass('date-con');
-                datetime_con_func.blurAll(me);
-                // var promises = [];
-                // if(me.settings.$datepicker.hasClass('hide')) {
-                //     promises.push(func.hideTimePicker(me));
-                // }else {
-                //     promises.push(func.hideDatePicker(me));
-                // }
-                if(isStarttime && isDate) {
-                    datetime_con_func.activeAndSetStarttime_date(me);
-                }else if(isStarttime && !isDate) {
-                    datetime_con_func.activeAndSetStarttime_time(me);
-                }else if(!isStarttime && isDate) {
-                    datetime_con_func.activeAndSetEndtime_date(me);
-                }else {
-                    datetime_con_func.activeAndSetEndtime_time(me);
-                }
-                // Promise.all(promises).then(function(rets) {
-                // });
-            });*/
-            /*me.settings.$datepicker.on('click', '.month-dates-con:not(".hide") .date-col.date', function() {
-                
-                var isSingleDateChooseMode = me.settings.$datepicker.find('.show-month-con .choose_enddate:not(".hide"), .show-month-con .choose_startdate:not(".hide")').length > 0;
-                if(isSingleDateChooseMode) return;
-                var $this = $(this);
-                var date = $this.attr('date');
-                var $active_con = me.settings.$datetime_con.find('.active.con'), isStarttime = $active_con.parents('.starttime-con').length > 0, isDate = $active_con.hasClass('date-con');
-                datetime_con_func.blurAll(me);
-                if(isStarttime && isDate) {
-                    datetime_con_func.activeAndSetStarttime_date(me, date);
-                    datetime_con_func.setEndtime_date(me, date);
-                }else if(!isStarttime && isDate) {
-                    datetime_con_func.activeAndSetEndtime_date(me, date);
-                }
-            });*/
 
             //End datetime-con**************************************************************
 
@@ -1183,27 +1176,50 @@
 			    var $this = $(e.target);
 			    var $e1 = $this.parents('.twperfectdatepicker');
 			    var $e2 = $this.parents('.twperfectdatepicker-con');
-			    
 			    if($e1.length !== 0 ||
                     $this.hasClass('twperfectdatepicker-con') ||
                     $this.hasClass('time-unit') ||
                     $e2.length !== 0) {
 			        return;
                 }
-                func.beforeHide(me);
-                func.reset(me);
-                func.hide(me);
+                func.cancelForNexttime(me);
             });
 			//End timepicker $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 			//main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 			me.$ele.on('click', function(e) {
 			    var $this = $(this);
-				if(me.settings.$me.hasClass('hide')) {
-					func.beforeShow(me);
+                var ret = {};
+                me.main_container_hold = true;
+                datetime_con_func.refresh(me);
+                Process.selectDate(me, function(o) {
+                    ret = o;
+                    func.hideDatePicker(me).then(function(o) {
+                        return func.hideDatePicker(me);
+                    }).then(function () {
+                        return func.showMainPart(me);
+                    }).then(function(){
+                        if(ret.date) {
+                            func.refreshMeByDate(me, ret.date);
+                            return;
+                        }
+                        func.refreshMeByStarttimeAndEndtime(me, ret.starttime, ret.endtime);
+                    });
+                });
+			});
+			me.main_container_hold = false;
+			me.main_container_ishover = false;
+			me.main_container_fadeTimeout = null;
+			me.$ele.on('mouseenter mouseleave', function(e) {
+                if(me.main_container_hold) return;
+                var $this = $(this);
+			    if(e.type === 'mouseenter') {
+                    clearTimeout(me.main_container_fadeTimeout);
+                    me.main_container_ishover = true;
+                    func.beforeShow(me);
                     me.settings.$main_part.show().removeClass('hide');
-					me.settings.$me.removeClass('hide').fadeIn(50, 'swing', function() {
-					    func.showMainPart(me).then(function() {
+                    me.settings.$me.removeClass('hide').fadeIn(100, 'swing', function() {
+                        func.showMainPart(me).then(function() {
                             var starttime = $this.attr('starttime');
                             var endtime = $this.attr('endtime');
                             var timezone = $this.attr('timezone');
@@ -1211,31 +1227,57 @@
                             func.refreshTimezone(me, timezone);
                         });
                     });
-				}else {
-                    func.beforeHide(me);
-                    me.settings.$me.fadeOut(50, 'swing', function() {
-                        $(this).addClass('hide');
-                        me.settings.$main_part.hide().addClass('hide');
-                        me.settings.$timepicker.empty().hide().addClass('hide');
-                    });
-				}
-			});
-			me.settings.$main_part.on('click', '.lf.se', function() {
+                }else {
+			        if(me.main_container_hold) return;
+                    me.main_container_ishover = false;
+                    me.main_container_fadeTimeout = setTimeout(function() {
+                        if(me.main_container_ishover) {
+                            return;
+                        }
+                        func.beforeHide(me);
+                        me.settings.$me.fadeOut(50, 'swing', function() {
+                            $(this).addClass('hide');
+                            me.settings.$main_part.hide().addClass('hide');
+                            me.settings.$timepicker.empty().hide().addClass('hide');
+                            func.confirmForNexttime(me);
+                        });
+                    }, 100);
+                }
+            });
+			me.settings.$me.on('mouseenter mouseleave', function (e) {
+			    if(me.main_container_hold) return;
+			    debugger;
+                if(e.type === 'mouseenter') {
+                    debugger;
+                    clearTimeout(me.main_container_fadeTimeout);
+                    me.main_container_ishover = true;
+                }else {
+                    if(me.main_container_hold) return;
+                    me.main_container_ishover = false;
+                    me.main_container_fadeTimeout = setTimeout(function() {
+                        if(me.main_container_ishover) {
+                            return;
+                        }
+                        func.beforeHide(me);
+                        me.settings.$me.fadeOut(50, 'swing', function() {
+                            $(this).addClass('hide');
+                            me.settings.$main_part.hide().addClass('hide');
+                            me.settings.$timepicker.empty().hide().addClass('hide');
+                            func.confirmForNexttime(me);
+                        });
+                    }, 100);
+                }
+            });
+			/*me.settings.$main_part.on('click', '.lf.se', function() {
                 var ret = {}, $this = $(this);
-                
                 datetime_con_func.refresh(me);
-
                 Process.selectDate(me, function(o) {
-                    
                     ret = o;
                     func.hideDatePicker(me).then(function(o) {
-                        
                         return func.hideDatePicker(me);
                     }).then(function () {
-                        
                         return func.showMainPart(me);
                     }).then(function(){
-                        
                         if(ret.date) {
                             func.refreshMeByDate(me, ret.date);
                             return;
@@ -1246,9 +1288,7 @@
             });
             me.settings.$main_part.on('click', '.lf.oneday.date', function() {
                 var ret = {};
-
                 datetime_con_func.refresh(me);
-
                 Process.selectDate(me, function(o) {
                     ret = o;
                     func.hideDatePicker(me).then(function(o) {
@@ -1265,7 +1305,6 @@
                 });
             });
             me.settings.$main_part.on('click', '.lf.oneday.time', function() {
-
                 datetime_con_func.refresh_Time(me);
 				Process.getStartHmsAndEndHms(me).then(function(ret) {
 					var starthms = ret['starthms'], endhms = ret['endhms'];
@@ -1285,69 +1324,25 @@
 					    alert('结束时间应大于开始时间');
 					    return;
                     }
-                    //me.settings.$main_part.find('span.showdur').html((_showDur !== realDur ? '约':'') + _showDur + showDurName);
                     func.hideTimePicker(me).then(function() {
                         me.settings.$main_part.show().removeClass('hide');
                         me.settings.$main_container.show().removeClass('hide');
                         me.settings.$me.removeClass('hide').fadeIn(50, 'swing');
                         func.refreshMeByStarttimeAndEndtime(me, starttime, endtime);
                     });
-					//var $showtime = me.settings.$main_part.find('.showtime.cell.hms'), $st = me.settings.$main_part.find('span.starthms'), $et = me.settings.$main_part.find('span.endhms');
-					//$showtime.attr('starttime', starttime).attr('endtime', endtime);
-                    //$st.html(starthms);
-                    //$et.html(endhms);
 				});
-            });
-            /*me.settings.$main_part.on('click', '.row.notice', function() {
-                alert('notice');
-            });
-            me.settings.$main_part.on('click', '.row.repeat', function() {
-                alert('repeat');
             });*/
-            me.settings.$main_container.on('click', '.me_confirm', function() {
-                
-                func.beforeHide(me);
-                var $el = me.settings.$me;
-                var starttime = $el.attr('starttime') ? $el.attr('starttime') : moment().add(30, 'minutes').format('YYYY-MM-DD HH:mm:ss');
-                var endtime = $el.attr('endtime') ? $el.attr('endtime') : moment().add(1.5, 'hours').format('YYYY-MM-DD HH:mm:ss');
-                var timezone = $el.attr('timezone') ? $el.attr('timezone'): '';
-                me.settings.onConfirm({starttime: starttime, endtime: endtime, timezone: timezone});
-                func.hide(me);
-                me.$ele.attr('starttime', starttime).attr('endtime', endtime);
-                // me.$ele.find('div.con.origin').addClass('hide');
-                // me.$ele.find('div.time .show-starttime').html(moment(starttime).format("YYYY-MM-DD HH:mm"));
-                // me.$ele.find('div.time .show-endtime').html(moment(endtime).format("YYYY-MM-DD HH:mm"));
-                // me.$ele.find('div.con.time').removeClass('hide');
-            });
-            me.settings.$main_container.on('click', '.me_cancel', function() {
-                func.beforeHide(me);
-                func.reset(me);
-                func.hide(me);
-                //me.$ele.attr('starttime', '').attr('endtime', '');
-                //me.settings.onCancel();
-                // me.$ele.find('div.con.time').addClass('hide');
-                // me.$ele.find('div.con.origin').removeClass('hide');
-            });
-
-            
             me.settings.$main_container.on('click', '.extra-btn-con .row.timezone', function() {
-                
                 Process.chooseTimezone(me, function(timezone, timezonename) {
-                    
                     func.refreshTimezone(me, timezone, timezonename);
                 });
             });
-            
             me.settings.$main_container.on('click', '.extra-btn-con .row.notice', function () {
-                Process.chooseNoticeAdvance(me, function (duration_mills) {
-                    
-                });
+                Process.chooseNoticeAdvance(me, function (duration_mills) {});
             });
-            
             $(window).resize(function() {
                 func.beforeShow(me);
             });
-            //End main $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 		},
 
 		beforeShow: function(me) {
@@ -1395,8 +1390,8 @@
                 me.settings.$datepicker.find('.tips-cell').remove();
                 me.settings.$datepicker.find('.show-month-con .word-cell').append('<div class="tips-cell cell choose_startdate"><span class="word">选择开始日</span></div>');
 
-                me.settings.$datepicker.find('a.confirm').addClass('hide');
-                me.settings.$datepicker.find('a.cancel').addClass('hide');
+                // me.settings.$datepicker.find('a.confirm').addClass('hide');
+                // me.settings.$datepicker.find('a.cancel').addClass('hide');
 
                 me.settings.$datepicker.find('a.choose_starttime_onstartdate').addClass('hide');
                 me.settings.$datepicker.find('a.choose_endtime_onenddate').addClass('hide');
@@ -1552,8 +1547,8 @@
                 me.settings.$datepicker.find('.tips-cell').remove();
                 me.settings.$datepicker.find('.show-month-con .word-cell').append('<div class="tips-cell cell choose_enddate"><span class="word">选择结束日</span></div>');
 
-                me.settings.$datepicker.find('a.confirm').addClass('hide');
-                me.settings.$datepicker.find('a.cancel').addClass('hide');
+                // me.settings.$datepicker.find('a.confirm').addClass('hide');
+                // me.settings.$datepicker.find('a.cancel').addClass('hide');
 
                 me.settings.$datepicker.find('a.choose_starttime_onstartdate').addClass('hide');
                 me.settings.$datepicker.find('a.choose_endtime_onenddate').addClass('hide');
@@ -1680,6 +1675,7 @@
             });
         },
 	    chooseTimezone: function(me, cb) {
+	        me.main_container_hold = true;
 	        var timezone;
 	        func.hideMainPart(me).then(function () {
                 return func.showTimezone(me);
@@ -1696,6 +1692,7 @@
                         }else {
                             cb(timezone, timezonename);
                         }
+                        me.main_container_hold = false;
                     });
                 });
             })

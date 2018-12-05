@@ -31,11 +31,49 @@
     .twperfectdatepicker-con:HOVER {
         color: #555
     }
+    .settime {
+        display: inline-block;vertical-align: middle;cursor: pointer;font-size:0;
+    }
+    .settime:HOVER .time-con span {
+        background: #f7e0e0;
+    }
+    .settime .con.hide {
+        display: none;
+    }
+    .settime .con {
+        display: inline-block;vertical-align: middle;cursor: pointer;font-size: 14px;
+    }
+    .settime .origin-con {
+        color: #fa6565;
+        padding: 3px;
+    }
+    .settime .origin-con i.iconfont {
+        height: 20px;
+        display: block;
+        line-height: 17px;
+        font-size: 17px;
+    }
+    .settime .time-con span {
+        background: #FEEFEF;
+        color: #fa6565;
+        padding: 3px;
+        margin-right: 5px;
+        font-weight: bold;
+        transition:color 1s;
+        -moz-transition:color 1s; /* Firefox 4 */
+        -webkit-transition:color 1s; /* Safari and Chrome */
+        -o-transition:color 1s; /* Opera */
+    }
+    .settime .time-con span.flask {
+        color: #fff;
+    }
 </style>
 <body>
 
-<div class="twperfectdatepicker-con"><span>设置时间</span></div>
-
+<div class="settime" tid="settime" style="display: inline-block; vertical-align: middle; margin-right: 50px;">
+    <div class="word-con con starttime-con time-con"><span class="starttime" tid="starttime">2018-09-04 10:30:00</span>开始、</div>
+    <div class="word-con con endtime-con time-con"><span class="endtime" tid="endtime">2018-09-04 10:30:00</span>结束</div>
+</div>
 
 <script src="js/lunar.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -44,14 +82,38 @@
 <script src="dependency/twlayer/js/twlayer.js"></script>
 <script src="js/twperfectdatepicker.js"></script>
 <script>
-    var $con = $('.twperfectdatepicker-con');
+    $('.settime .starttime').html(moment().startOf("hour").add(1.5, "hours").format("YYYY-MM-DD HH:mm"));
+    $('.settime .endtime').html(moment().startOf("hour").add(2, "hours").format("YYYY-MM-DD HH:mm"));
+    var setDatepickerTime = function(starttime, endtime) {
+        var $con = $('.settime');
+        var o_starttime = $con.attr('starttime'), o_endtime = $con.attr('endtime');
+        $con.find('.origin-con').addClass('hide');
+        o_starttime !== starttime ? $con.find('.time-con span.starttime').html(moment(starttime).format('YYYY-MM-DD HH:mm')).addClass('flask') : void(0);
+        o_endtime !== endtime ? $con.find('.time-con span.endtime').html(moment(endtime).format('YYYY-MM-DD HH:mm')).addClass('flask') : void(0);
+        setTimeout(function() {
+            o_starttime !== starttime ? $con.find('.time-con span.starttime').removeClass('flask') : void(0);
+            o_endtime !== endtime ? $con.find('.time-con span.endtime').removeClass('flask') : void(0);
+        }, 500);
+        $con.find('.time-con').removeClass('hide');
+        $con.attr('starttime', starttime).attr('endtime', endtime);
+    }
+    var clearDatepickerTime = function() {
+        var $con = $('.settime');
+        $con.find('.time-con').addClass('hide');
+        $con.find('.origin-con').removeClass('hide');
+        $con.find('.time-con span.starttime').empty();
+        $con.find('.time-con span.endtime').empty();
+        $con.attr('starttime', '').attr('endtime', '');
+    }
+    var $con = $('.settime');
     $con.twperfectdatepicker({
         onConfirm: function(ret) {
-            ret.starttime && $con.attr('starttime', ret.starttime);
-            ret.endtime && $con.attr('endtime', ret.endtime);
-            ret.timezone && $con.attr('timezone', ret.timezone);
+            setDatepickerTime(ret.starttime, ret.endtime);
         },
-        enableTimezone: true,
+        onCancel: function() {
+            clearDatepickerTime();
+        },
+        enableTimezone: false,
         minuteDuration: 5
     });
 </script>
